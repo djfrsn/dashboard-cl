@@ -3,5 +3,5 @@ export const firebaseConfig = {
   authDomain: 'dashboard-cli.firebaseapp.com',
   databaseURL: 'https://dashboard-cli.firebaseio.com',
   storageBucket: 'dashboard-cli.appspot.com',
-  messagingSenderId: "50706334069"
+  messagingSenderId: '50706334069'
 };
