@@ -2,11 +2,11 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { authActions, getAuth } from 'core/auth';
 import Header from 'views/components/header';
-
+import styles from './app.scss';
 
 function App({authenticated, children, signOut}) {
   return (
-    <div>
+    <div  className={styles.mainContainer}>
       <Header
         authenticated={authenticated}
         signOut={signOut}

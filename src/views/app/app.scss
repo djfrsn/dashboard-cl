@@ -1,0 +1,8 @@
+.mainContainer {
+  display: flex;
+  width: 100%;
+  composes: flex-wrap from '../styles/_grid.scss';
+  > main {
+    width: 100%;
+  }
+}

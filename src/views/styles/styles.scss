@@ -1,28 +1,22 @@
 @import
 "settings",
-'~minx/src/settings',
-'~minx/src/functions',
-'~minx/src/mixins',
-'~minx/src/reset',
-'~minx/src/elements';
+"normalize";
 
 @import
-'grid',
-'button',
-'header',
-'sign-in',
-'task-filters',
-'task-form',
-'task-item',
-'task-list';
+'./surface/surface_styles';
 
 
 html {
   overflow-y: scroll;
+  width: 100%;
 }
 
 body {
   padding-bottom: 120px;
+  width: 100%;
+  > div {
+    width: 100%;
+  }
 }
 
 a {
@@ -37,3 +31,4 @@ a {
 .hide {
   display: none !important;
 }
+

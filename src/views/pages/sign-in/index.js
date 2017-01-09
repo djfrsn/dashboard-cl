@@ -2,12 +2,13 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { authActions } from 'core/auth';
 import Button from 'views/components/button';
+import styles from './sign_in.scss'
 
 
 const SignInPage = ({signInWithGithub, signInWithGoogle, signInWithTwitter}) => {
   return (
-    <div className="g-row sign-in">
-      <div className="g-col">
+    <div className={styles.signIn}>
+      <div className="g--6">
         <h1 className="sign-in__heading">Sign in</h1>
         <Button className="sign-in__button" onClick={signInWithGithub}>GitHub</Button>
         <Button className="sign-in__button" onClick={signInWithGoogle}>Google</Button>

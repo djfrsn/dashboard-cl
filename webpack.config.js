@@ -30,7 +30,7 @@ const PORT = 3000;
 const rules = {
   js: {test: /\.js$/, exclude: /node_modules/, loader: 'babel'},
   json: {test: /\.json$/, loader: 'json'},
-  scss: {test: /\.scss$/, loader: 'style!css!postcss!sass'}
+  scss: {test: /\.scss$/, loader: 'style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass'}
 };
 
 
@@ -43,7 +43,8 @@ config.resolve = {
   extensions: ['.js', '.json'],
   modules: [
     path.resolve('./src'),
-    'node_modules'
+    'node_modules',
+    './src/views/styles'
   ]
 };
 

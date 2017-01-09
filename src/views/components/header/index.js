@@ -12,11 +12,6 @@ const Header = ({authenticated, signOut}) => {
 
           <ul className="header__actions">
             {authenticated ? <li><Button onClick={signOut}>Sign out</Button></li> : null}
-            <li>
-              <a className="link link--github" href="https://github.com/djfrsn/dashboard-cl">
-                <GitHubLogo />
-              </a>
-            </li>
           </ul>
         </div>
       </div>
