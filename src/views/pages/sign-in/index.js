@@ -8,11 +8,18 @@ import styles from './sign_in.scss'
 const SignInPage = ({signInWithGithub, signInWithGoogle, signInWithTwitter}) => {
   return (
     <div className={styles.signIn}>
-      <div className="g--6">
-        <h1 className="sign-in__heading">Sign in</h1>
-        <Button className="sign-in__button" onClick={signInWithGithub}>GitHub</Button>
-        <Button className="sign-in__button" onClick={signInWithGoogle}>Google</Button>
-        <Button className="sign-in__button" onClick={signInWithTwitter}>Twitter</Button>
+      <div className={styles.centerContent}>
+      <div className={styles.logo}>Dashboard</div>
+      <form className={styles.form}>
+        <button className={styles.createAccountButton} data-text="Create Account">+</button>
+        <i className={styles.faEnvelope} aria-hidden="true"></i>
+        <input type="text" required placeholder="Email" />
+        <i className={styles.faLock} aria-hidden="true"></i>
+        <input type="password" required placeholder="Password" />
+        <input type="checkbox" />
+        <p className={styles.rememberMeText}>Remember Me</p>
+        <button className={styles.logInButton}>Log In<i className={styles.longArrowRight} aria-hidden="true"></i></button>
+      </form>
       </div>
     </div>
   );

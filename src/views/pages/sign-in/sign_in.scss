@@ -1,3 +1,58 @@
+@import '../../styles/surface/cards_tiles';
+@import '../../styles/surface/nav';
+@import '../../styles/surface/tooltip';
+@import '../../styles/surface/buttons';
+@import '../../styles/surface/grid';
+@import '../../styles/font-awesome';
+
 .signIn {
   composes: flex-center from '../../styles/_grid.scss';
+  composes: flex-wrap from '../../styles/_grid.scss';
+}
+
+.logo {
+  @extend .logo-area;
+}
+
+.centerContent {
+  @extend .g--3;
+}
+
+.form {
+  @extend .card;
+  input {
+    width: 70%;
+  }
+}
+
+.rememberMeText {
+
+}
+
+.logInButton {
+  @extend .btn--red;
+  @extend .btn--raised;
+  width: 100%;
+  height: 40px;
+}
+
+.createAccountButton {
+  @extend .tooltip;
+  @extend .btn--float;
+  @extend .nudge--right;
+}
+
+.faEnvelope {
+  @extend .fa;
+  @extend .fa-envelope;
+}
+
+.faLock {
+  @extend .fa;
+  @extend .fa-lock;
+}
+
+.longArrowRight {
+  @extend .fa;
+  @extend .fa-long-arrow-right;
 }
