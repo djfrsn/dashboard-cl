@@ -7,5 +7,26 @@
 
 .flex-wrap {
   flex-flow: row wrap;
-   align-content: flex-end;
+  align-content: flex-end;
+}
+
+.flex-rows {
+   display: flex;
+   flex-direction: row;
+}
+
+.flex-columns {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-flow: column wrap;
+   align-content: center;
+}
+
+.align-start {
+  align-self: flex-start;
+}
+
+.align-end {
+  align-self: flex-end;
 }

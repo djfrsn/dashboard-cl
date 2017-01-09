@@ -13,11 +13,13 @@ const SignInPage = ({signInWithGithub, signInWithGoogle, signInWithTwitter}) => 
       <form className={styles.form}>
         <button className={styles.createAccountButton} data-text="Create Account">+</button>
         <i className={styles.faEnvelope} aria-hidden="true"></i>
-        <input type="text" required placeholder="Email" />
+        <input className={styles.formInputs} type="text" required placeholder="Email" />
         <i className={styles.faLock} aria-hidden="true"></i>
-        <input type="password" required placeholder="Password" />
-        <input type="checkbox" />
-        <p className={styles.rememberMeText}>Remember Me</p>
+        <input className={styles.formInputs} type="password" required placeholder="Password" />
+        <div className={styles.rememberMeContainer}>
+          <input type="checkbox" className={styles.checkbox} />
+          <p className={styles.rememberMeText}>Remember Me</p>
+        </div>
         <button className={styles.logInButton}>Log In<i className={styles.longArrowRight} aria-hidden="true"></i></button>
       </form>
       </div>
