@@ -1,27 +1,18 @@
 @import
 "settings";
 
-@import
-"./surface/_imports/_importMaster",
-"./surface/general",
-"./surface/header",
-"./surface/footer",
-"./surface/form",
-"./surface/media",
-"./surface/links",
-"./surface/lists",
-"./surface/type";
-
 html {
   overflow-y: scroll;
   width: 100%;
+  height: 100%;
 }
 
 body {
-  padding-bottom: 120px;
   width: 100%;
+  height: 100%;
   > div {
     width: 100%;
+    height: 100%;
   }
 }
 

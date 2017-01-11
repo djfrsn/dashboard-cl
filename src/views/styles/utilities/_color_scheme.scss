@@ -1,0 +1,35 @@
+// Color Scheme
+
+/// Url: http://paletton.com/#uid=5340u0kllllaFw0g0qFqFg0w0aF
+
+// Basic colors
+$primary: #2A4F6E; // light blue
+$secondary: #277455; // Light Green
+$tertiary: #5E9732; // Money Green
+$quadrant: #277455; // Light Green Alt
+$fracture: #718DA5; // Light Blue Alt
+$black: #333333; // off black
+$white: #f3f3f3; // off white
+
+// Create a map for your theme
+$stoic: (
+  bg: $secondary,
+  fg: $quadrant,
+  txt: $quadrant,
+  dark: $black,
+  light: $white,
+  primary: $primary,
+  secondary: $secondary,
+  tertiary: $tertiary,
+  quadrant: $quadrant,
+  fracture: $fracture
+);
+
+// Simply change the variable $theme
+$theme: $stoic;
+
+// Color setting helper function
+@function themeColor($key) {
+  $val: map-get($theme, $key);
+  @return $val;
+}

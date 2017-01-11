@@ -4,14 +4,14 @@ import { authActions, getAuth } from 'core/auth';
 import Header from 'views/components/header';
 import styles from './app.scss';
 
+// <Header
+//  authenticated={authenticated}
+//  signOut={signOut}
+// />
+
 function App({authenticated, children, signOut}) {
   return (
     <div  className={styles.mainContainer}>
-      <Header
-        authenticated={authenticated}
-        signOut={signOut}
-      />
-
       <main>{children}</main>
     </div>
   );

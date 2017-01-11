@@ -5,6 +5,7 @@ import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 import './views/styles/styles.scss';
+import './views/styles/surface/surface_min_styles.scss';
 import { initAuth } from './core/auth';
 import { configureStore } from './core/store';
 import Root from './views/root';

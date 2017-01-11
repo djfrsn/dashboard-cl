@@ -1,0 +1,17 @@
+// Text-shadow Mixins
+$light: 0 0.02em #fff;
+$dark: 0 0.02em $black;
+
+@mixin text-shadow($ts-style: $light) {
+  text-shadow: $ts-style;
+}
+
+.text-shadow-light
+{
+  @include text-shadow();
+}
+
+.text-shadow-dark
+{
+  @include text-shadow($dark);
+}

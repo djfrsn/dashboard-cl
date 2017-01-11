@@ -1,5 +1,5 @@
 @import './colors';
-
+@import '../../utilities/color_scheme';
 // Type
 $serif: 'Gentium Book Basic', serif !default;
 $sans: Roboto, sans-serif !default;
@@ -10,9 +10,10 @@ $font-huge: 40px !default;
 $line-height: 130% !default;
 
 // Colors
-$primary: $turqoise !default;
-$secondary: lighten($turqoise, 10%) !default;
-$accent: $yellow !default;
+$primary: themeColor(fracture) !default;
+$secondary: lighten(themeColor(fracture), 10%) !default;
+$tertiary: lighten(themeColor(fracture), 10%) !default;
+$accent: themeColor(tertiary) !default;
 
 $body-background: $paper !default;
 
@@ -29,8 +30,8 @@ $box-shadow-raised-hover: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0,
 $cubic: cubic-bezier(.64,.09,.08,1) !default;
 
 $border-radius-small: 3px !default;
-$border-radius-med: 6px !default; 
-$border-radius-big: 10px !default; 
+$border-radius-med: 6px !default;
+$border-radius-big: 10px !default;
 
 // Spacing
 $space-big: 40px !default;

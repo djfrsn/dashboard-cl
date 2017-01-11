@@ -2,14 +2,15 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { authActions } from 'core/auth';
 import Button from 'views/components/button';
-import styles from './sign_in.scss'
+import styles from './sign_in.scss';
+import logo from '../../../logo.png';
 
 
 const SignInPage = ({signInWithGithub, signInWithGoogle, signInWithTwitter}) => {
   return (
     <div className={styles.signIn}>
       <div className={styles.centerContent}>
-      <div className={styles.logo}>Dashboard</div>
+      <div className={styles.logo}><img src={logo} /></div>
       <form className={styles.form}>
         <button className={styles.createAccountButton} data-text="Create Account">+</button>
         <i className={styles.faEnvelope} aria-hidden="true"></i>

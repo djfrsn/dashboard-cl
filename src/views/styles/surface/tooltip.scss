@@ -1,5 +1,6 @@
 @import './_imports/_variables',
 				'./_imports/_colors';
+@import '../utilities/color_scheme';
 
 .tooltip {
 	position: relative;
@@ -7,13 +8,14 @@
 		&:after {
 			position: absolute;
 			content: attr(data-text);
-			background: lighten($grey, 10%);
+			background: lighten(themeColor(fracture), 10%);
 			border-radius: $border-radius-small;
 			padding: $space-small*0.8;
-			bottom: -2.5em;
+			bottom: -4em;
 			left: 50%;
 			transform: translateX(-50%);
 			z-index: 2;
+			font-size: 0.5em;
 		}
 	}
 }
