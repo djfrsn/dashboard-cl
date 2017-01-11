@@ -4,6 +4,7 @@
 @import '../../styles/surface/buttons';
 @import '../../styles/surface/grid';
 @import '../../styles/font-awesome';
+@import '../../styles/media_queries';
 
 .signIn {
   composes: flex-center flex-wrap from '../../styles/_grid.scss';
@@ -14,14 +15,14 @@
 }
 
 .centerContent {
-  @extend .g--3;
+  @extend .g--10;
 }
 
 .form {
   composes: flex-columns from '../../styles/_grid.scss';
   @extend .card;
   position: relative;
-  padding: 40px;
+  padding: 15px;
   input {
     display: flex;
     font-size: 1em;
@@ -50,8 +51,8 @@
   @extend .btn--float;
   @extend .nudge--right;
   position: absolute;
-  top: 20px;
-  right: -45px;
+  top: 10px;
+  right: -33px;
 }
 
 .inputIcons {
