@@ -18,8 +18,9 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --display-chunks",
-    "build-test": "npm run build && node server.js",
+    "build:server": "npm run build && node server.js",
     "clean": "del-cli target",
+    "deploy": "npm run build && git push && firebase deploy",
     "lint": "eslint -c .eslintrc.yml *.js src server",
     "prebuild": "run-s clean lint test",
     "server": "cross-env NODE_ENV=development nodemon -w 'server/**/*.*' server/main.js",
