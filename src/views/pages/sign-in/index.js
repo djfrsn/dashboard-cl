@@ -10,7 +10,7 @@ const SignInPage = () => {
   return (
     <div className={styles.signIn}>
       <div className={styles.centerContent}>
-        <div className={styles.logo}><img src={logo} /></div>
+        <div className={styles.logo}><h1>Dashboard-cl</h1></div>
         <form className={styles.form}>
           <button className={styles.createAccountButton} data-text="Create Account">+</button>
           <i className={styles.faEnvelope} aria-hidden="true" />

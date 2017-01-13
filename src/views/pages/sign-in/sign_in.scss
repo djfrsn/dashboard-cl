@@ -18,7 +18,16 @@
 
 .logo {
   @extend .logo-area;
-  color: themeColor(light);
+  h1 {
+    margin: 0;
+    font-size: 3em;
+    color: themeColor(light);
+  }
+  @include tablet-landscape-and-up {
+    h1 {
+      font-size: 3.5em;
+    }
+  }
 }
 
 // Controls main content size
