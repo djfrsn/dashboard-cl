@@ -21,7 +21,7 @@ const ENV_PRODUCTION = NODE_ENV === 'production';
 const ENV_TEST = NODE_ENV === 'test';
 
 const HOST = '0.0.0.0';
-const PORT = 3000;
+const PORT = 3070;
 
 
 //=========================================================
@@ -158,7 +158,7 @@ if (ENV_PRODUCTION) {
 
   config.module.rules.push({
     test: /\.scss$/,
-    loader: ExtractTextPlugin.extract('css?-autoprefixer!postcss!sass')
+    loader: ExtractTextPlugin.extract('css?-autoprefixer&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass')
   });
 
   config.plugins.push(
