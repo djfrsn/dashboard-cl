@@ -7,11 +7,11 @@
 @import '../../styles/utilities/media_queries';
 @import '../../styles/utilities/color_scheme';
 @import '../../styles/utilities/text';
-
-$grid_path: '../../styles/utilities/_grid.scss';
+@import '../../styles/utilities/grid';
 
 .signIn {
-  composes: flex-center flex-wrap from $grid_path;
+  @extend .flex-center;
+  @extend .flex-wrap;
   height: 100%;
   @extend .text-shadow-light;
 }
@@ -37,7 +37,7 @@ $grid_path: '../../styles/utilities/_grid.scss';
 }
 
 .form {
-  composes: flex-columns from $grid_path;
+  @extend .flex-columns;
   @extend .text-shadow-dark;
   @extend .card;
   background-color: themeColor(light);
@@ -59,7 +59,7 @@ $grid_path: '../../styles/utilities/_grid.scss';
 }
 
 .formInputs {
-  composes: align-end from $grid_path;
+  @extend .align-end;
   width: 85% !important;
   margin-bottom: 10px !important;
   color: themeColor(fracture) !important;
@@ -95,7 +95,7 @@ $grid_path: '../../styles/utilities/_grid.scss';
 }
 
 .inputIcons {
-  composes: align-start from $grid_path;
+  @extend .align-start;
   color: themeColor(dark);
   position: relative;
   top: 31px;
@@ -107,7 +107,7 @@ $grid_path: '../../styles/utilities/_grid.scss';
 }
 
 .rememberMeContainer {
-  composes: flex-rows from $grid_path;
+  @extend .flex-rows;
   width: 100%;
   margin-bottom: 20px;
 }
@@ -116,7 +116,7 @@ $grid_path: '../../styles/utilities/_grid.scss';
 }
 
 .checkbox {
-  composes: align-start from $grid_path;
+  @extend .align-start;
   width: 30px;
   margin: 0;
 }

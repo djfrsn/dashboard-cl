@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import Button from '../button';
-import GitHubLogo from '../logos/github';
+// import GitHubLogo from '../logos/github';
 
 
 const Header = ({authenticated, signOut}) => {
