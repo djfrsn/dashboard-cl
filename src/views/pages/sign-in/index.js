@@ -3,7 +3,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { authActions } from 'core/auth';
 import styles from './sign_in.scss';
-import logo from '../../../logo.png';
 
 
 const SignInPage = () => {
