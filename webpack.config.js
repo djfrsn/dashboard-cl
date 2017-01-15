@@ -7,6 +7,7 @@ const HotModuleReplacementPlugin = require('webpack/lib/HotModuleReplacementPlug
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ProgressPlugin = require('webpack/lib/ProgressPlugin');
+const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 
@@ -101,6 +102,9 @@ if (ENV_DEVELOPMENT || ENV_PRODUCTION) {
       hash: false,
       inject: 'body',
       template: './src/index.html'
+    }),
+    new ProvidePlugin({
+      classNames: 'classnames'
     })
   );
 }

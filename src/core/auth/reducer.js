@@ -3,6 +3,7 @@ import { authActions } from './actions';
 
 
 export const AuthState = new Record({
+  authFlow: 'signin',
   authenticated: false,
   uid: null,
   user: null
@@ -11,6 +12,11 @@ export const AuthState = new Record({
 
 export function authReducer(state = new AuthState(), {payload, type}) {
   switch (type) {
+    case authActions.AUTH_FLOW:
+      return state.merge({
+        authFlow: payload.type
+      });
+
     case authActions.SIGN_IN_FULFILLED:
       return state.merge({
         authenticated: true,

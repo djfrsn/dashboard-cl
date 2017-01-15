@@ -5,6 +5,15 @@ import { firebaseAuth } from 'core/firebase';
 import { authActions } from './actions';
 
 
+function* authFlow(type) {
+  try {
+    yield history.push(`/sign-in#${type}`);
+  }
+  catch (error) {
+    yield history.push('/sign-in');
+  }
+}
+
 function* signIn(authProvider) {
   try {
     const authData = yield call([firebaseAuth, firebaseAuth.signInWithPopup], authProvider);
@@ -32,6 +41,13 @@ function* signOut() {
 //  WATCHERS
 //-------------------------------------
 
+function* watchAuthFlow() {
+  while (true) {
+    let { payload } = yield take(authActions.AUTH_FLOW);
+    yield fork(authFlow, payload.type);
+  }
+}
+
 function* watchSignIn() {
   while (true) {
     let { payload } = yield take(authActions.SIGN_IN);
@@ -52,6 +68,7 @@ function* watchSignOut() {
 //-------------------------------------
 
 export const authSagas = [
+  fork(watchAuthFlow),
   fork(watchSignIn),
   fork(watchSignOut)
 ];

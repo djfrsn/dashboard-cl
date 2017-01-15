@@ -1,0 +1,62 @@
+@import '../../styles/surface/cards_tiles';
+@import '../../styles/surface/nav';
+@import '../../styles/surface/tooltip';
+@import '../../styles/surface/buttons';
+@import '../../styles/surface/grid';
+@import '../../styles/surface/utility';
+@import '../../styles/font-awesome/scss/font-awesome';
+@import '../../styles/utilities/media_queries';
+@import '../../styles/utilities/color_scheme';
+@import '../../styles/utilities/text';
+@import '../../styles/utilities/grid';
+
+.inputIcons {
+  @extend .align-start;
+  color: themeColor(dark);
+  position: relative;
+  top: 31px;
+  font-size: 1.5em;
+
+  @include desktop-and-up {
+    left: 2%;
+  }
+}
+
+.footer {
+  @extend .text-shadow-dark;
+  display: flex;
+  height: 25%;
+}
+
+.footerAction {
+  @extend .flex-center;
+  color: themeColor(light);
+  width: 100%;
+  margin-top: 30px;
+}
+
+.footerActionText {
+  color: themeColor(light);
+  margin: 0;
+}
+
+.inputIconStyle {
+  color: themeColor(light);
+  top: 56px;
+  left: -7px;
+  font-size: 1.1em;
+}
+
+.faExclamationCircle {
+  @extend .fa;
+  @extend .fa-exclamation-circle;
+  @extend .inputIcons;
+  @extend .inputIconStyle;
+}
+
+.faBackArrow {
+  @extend .fa;
+  @extend .fa-arrow-circle-left;
+  @extend .inputIcons;
+  @extend .inputIconStyle;
+}

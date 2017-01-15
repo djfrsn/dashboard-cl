@@ -2,6 +2,7 @@ import firebase from 'firebase';
 
 
 export const authActions = {
+  AUTH_FLOW: 'AUTH_FLOW',
   SIGN_IN: 'SIGN_IN',
   SIGN_IN_FAILED: 'SIGN_IN_FAILED',
   SIGN_IN_FULFILLED: 'SIGN_IN_FULFILLED',
@@ -10,6 +11,11 @@ export const authActions = {
   SIGN_OUT_FAILED: 'SIGN_OUT_FAILED',
   SIGN_OUT_FULFILLED: 'SIGN_OUT_FULFILLED',
 
+
+  authFlow: type => ({
+    type: authActions.AUTH_FLOW,
+    payload: {type}
+  }),
 
   signIn: authProvider => ({
     type: authActions.SIGN_IN,
