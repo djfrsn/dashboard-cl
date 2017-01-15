@@ -13,7 +13,7 @@ const SignInPage = () => {
         <form className={styles.form}>
           <button className={styles.createAccountButton} data-text="Create Account">+</button>
           <i className={styles.faEnvelope} aria-hidden="true" />
-          <input className={styles.formInputs} type="text" required placeholder="Email" />
+          <input className={styles.formInputs} type="text" required placeholder="Your email address" />
           <i className={styles.faLock} aria-hidden="true" />
           <input className={styles.formInputs} type="password" required placeholder="Password" />
           <div className={styles.rememberMeContainer}>
@@ -23,6 +23,12 @@ const SignInPage = () => {
           <button className={styles.logInButton}>Log In<i className={styles.longArrowRight} aria-hidden="true" /></button>
         </form>
       </div>
+      <footer className={styles.footer}>
+        <div className={styles.footerAction}>
+          <i className={styles.faExclamationCircle} aria-hidden="true" />
+          Forgot Password?
+        </div>
+      </footer>
     </div>
   );
 };

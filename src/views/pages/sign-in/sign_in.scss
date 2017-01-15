@@ -3,6 +3,7 @@
 @import '../../styles/surface/tooltip';
 @import '../../styles/surface/buttons';
 @import '../../styles/surface/grid';
+@import '../../styles/surface/utility';
 @import '../../styles/font-awesome/scss/font-awesome';
 @import '../../styles/utilities/media_queries';
 @import '../../styles/utilities/color_scheme';
@@ -12,8 +13,8 @@
 .signIn {
   @extend .flex-center;
   @extend .flex-wrap;
-  height: 100%;
   @extend .text-shadow-light;
+  height: 100%;
 }
 
 .logo {
@@ -32,14 +33,12 @@
 // Controls main content size
 .centerContent {
   @extend .g--10;
-  height: 100%;
+  height: 58%;
   max-width: 340px;
-  margin-top: 100px;
 }
 
 .form {
   @extend .flex-columns;
-  @extend .text-shadow-dark;
   @extend .card;
   background-color: themeColor(light);
   position: relative;
@@ -72,6 +71,7 @@
 .logInButton {
   @extend .btn--secondary;
   @extend .btn--raised;
+  @extend .text-shadow-dark;
   width: 100%;
   height: 50px;
   font-size: 0.9em;
@@ -116,6 +116,19 @@
 .rememberMeText {
 }
 
+.footer {
+  @extend .text-shadow-dark;
+  display: flex;
+  height: 25%;
+}
+
+.footerAction {
+  @extend .flex-center;
+  color: themeColor(light);
+  width: 100%;
+  margin-top: 30px;
+}
+
 .checkbox {
   @extend .align-start;
   width: 30px;
@@ -132,6 +145,16 @@
   @extend .fa;
   @extend .fa-lock;
   @extend .inputIcons;
+}
+
+.faExclamationCircle {
+  @extend .fa;
+  @extend .fa-exclamation-circle;
+  @extend .inputIcons;
+  color: themeColor(light);
+  top: 56px;
+  left: -7px;
+  font-size: 1.1em;
 }
 
 .longArrowRight {
