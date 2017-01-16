@@ -8,16 +8,21 @@
 @import '../../styles/utilities/media_queries';
 @import '../../styles/utilities/color_scheme';
 @import '../../styles/utilities/text';
-@import '../../styles/utilities/flex';
+@import '../../styles/utilities/positioning';
 
 .logo {
-  text-align: center;
+  @extend .absolute-center-horizontal;
+  position: absolute;
   margin-top: 40px;
+  width: 100%;
+  max-width: 260px;
+  text-align: center;
   h1 {
     margin: 0;
     font-size: 2.7em;
   }
   @include tablet-landscape-and-up {
+    max-width: 340px;
     h1 {
       font-size: 3.5em;
     }
@@ -34,11 +39,10 @@
 
 .form {
   @extend .card;
-  width: 280px;
+  @extend .absolute-center-horizontal;
+  width: 260px;
   position: absolute;
   bottom: 135px;
-  left: 50%;
-  transform: translateX(-50%);
   background-color: themeColor(light);
   input {
     display: flex;
@@ -60,6 +64,9 @@
   float: right;
   width: 85% !important;
   color: themeColor(fracture) !important;
+  &.isForgotPassword {
+    margin-bottom: 20px;
+  }
 }
 
 .submitButton {
@@ -78,6 +85,9 @@
   position: absolute;
   top: 10px;
   right: -33px;
+  background: rgba(39,116,85,1);
+  background: radial-gradient(ellipse at center, rgba(39,116,85,1) 0%, rgba(39,116,85,0.96) 20%, rgba(42,79,110,0.8) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#277455', endColorstr='#2a4f6e', GradientType=1 );
   @include tablet-portrait-and-up {
     right: -38px;
   }
@@ -92,6 +102,9 @@
 .inputContainer {
   position: relative;
   height: 80px;
+  &.isForgotPassword {
+    height: 20px;
+  }
 }
 
 .inputIcons {
@@ -112,7 +125,11 @@
   margin-bottom: 20px;
 }
 
-.rememberMeText {
+.forgotPasswordText {
+  color: $gray;
+  width: 85%;
+  float: right;
+  font-size: 0.8em;
 }
 
 .checkbox {

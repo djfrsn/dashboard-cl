@@ -12,7 +12,7 @@ export class SignInForm extends Component {
   constructor() {
     super(...arguments);
 
-    this.state = {title: ''};
+    this.state = {logoPosition: {display: 'none'}};
 
     this.getAuthFlowType = ::this.getAuthFlowType;
     this.getSubmitButtonText = ::this.getSubmitButtonText;
@@ -21,6 +21,17 @@ export class SignInForm extends Component {
     this.handleSubmit = ::this.handleSubmit;
     this.showSignUp = ::this.showSignUp;
   }
+
+  componentDidMount() {
+    this.setLogoPosition();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.auth.authFlow !== this.props.auth.authFlow) {
+      this.setLogoPosition();
+    }
+  }
+
   showSignUp() {
     this.props.authFlow('signup');
   }
@@ -31,6 +42,14 @@ export class SignInForm extends Component {
 
   isAltAuthFlow() {
     return this.getAuthFlowType() === '#forgotpassword' || this.getAuthFlowType() === '#signup';
+  }
+
+  setLogoPosition() {
+    let heightBuffer = 190;
+    let height = this.form ? this.form.clientHeight : 370;
+    let logoPosition = { bottom: height + heightBuffer };
+
+    this.setState({...this.state, logoPosition});
   }
 
   getSubmitButtonText(authFlowType) {
@@ -77,12 +96,12 @@ export class SignInForm extends Component {
     const submitButtonText = this.getSubmitButtonText(authFlowType);
     return (
       <div className={styles.centerContent}>
-        <div className={styles.logo}><h1>Dashboard-cl</h1></div>
-        <form className={styles.form}>
+        <div className={styles.logo} style={this.state.logoPosition}><h1>Dashboard-cl</h1></div>
+        <form className={styles.form} ref={ref => { this.form = ref}}>
           {!isAltAuthFlow ? <button className={styles.createAccountButton} onClick={this.showSignUp} data-text="Create Account">+</button> : null}
-          <div className={styles.inputContainer}>
+          <div className={classNames({[styles.inputContainer]: true, [styles.isForgotPassword]: isForgotPassword })}>
             <i className={styles.zmdiEmail} aria-hidden="true" />
-            <input className={styles.formInputs} type="text" required placeholder="Your email address" />
+            <input className={classNames({[styles.formInputs]: true, [styles.isForgotPassword]: isForgotPassword })} type="text" required placeholder="Your email address" />
           </div>
           {isSignUp ?
             <div className={styles.inputContainer}>
@@ -90,10 +109,11 @@ export class SignInForm extends Component {
               <input className={styles.formInputs} type="text" required placeholder="FirstName" />
             </div>
           : null}
+          {!isForgotPassword ?
           <div className={styles.inputContainer}>
             <i className={styles.zmdiLock} aria-hidden="true" />
             <input className={styles.formInputs} type="password" required placeholder="Password" />
-          </div>
+          </div> : <p className={styles.forgotPasswordText} >Enter your email to reset password. You will receive a new password after the reset link is confirmed.</p>}
           {isSignUp ?
             <div className={styles.inputContainer}>
               <i className={styles.zmdiCommentEdit} aria-hidden="true" />
@@ -102,7 +122,7 @@ export class SignInForm extends Component {
           : null}
           {!isAltAuthFlow ? <div className={styles.rememberMeContainer}>
             <input type="checkbox" className={styles.checkbox} />
-            <p className={styles.rememberMeText}>Remember Me</p>
+            <p>Remember Me</p>
           </div> : null}
           <button className={styles.submitButton}>{submitButtonText}<i className={styles.zmdiLongArrowRight} aria-hidden="true" /></button>
         </form>

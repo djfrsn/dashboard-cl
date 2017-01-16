@@ -3,7 +3,7 @@ import { authActions } from './actions';
 
 
 export const AuthState = new Record({
-  authFlow: 'signin',
+  authFlow: 'initial',
   authenticated: false,
   uid: null,
   user: null

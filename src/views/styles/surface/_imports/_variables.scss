@@ -13,7 +13,7 @@ $line-height: 130% !default;
 $primary: themeColor(fracture) !default;
 $secondary: lighten(themeColor(fracture), 10%) !default;
 $tertiary: lighten(themeColor(fracture), 10%) !default;
-$accent: themeColor(tertiary) !default;
+$accent: themeColor(secondary) !default;
 
 $body-background: $paper !default;
 

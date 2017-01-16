@@ -30,3 +30,8 @@
 .align-end {
   align-self: flex-end;
 }
+
+.absolute-center-horizontal {
+  left: 50%;
+  transform: translateX(-50%);
+}
