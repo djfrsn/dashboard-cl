@@ -8,7 +8,7 @@ import styles from './sign_in.scss';
 const SignInPage = ({ auth, routing, authFlow, signIn }) => {
   return (
     <div className={styles.signIn}>
-      <SignInForm auth={auth} routing={routing} handleSubmit={signIn} />
+      <SignInForm auth={auth} routing={routing} handleSubmit={signIn} authFlow={authFlow}/>
       <SignInFooter auth={auth} routing={routing} handleFooterAction={authFlow} />
     </div>
   );

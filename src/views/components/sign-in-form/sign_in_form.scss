@@ -4,11 +4,11 @@
 @import '../../styles/surface/buttons';
 @import '../../styles/surface/grid';
 @import '../../styles/surface/utility';
-@import '../../styles/font-awesome/scss/font-awesome';
+@import '../../styles/material-design-iconic-font/scss/material-design-iconic-font';
 @import '../../styles/utilities/media_queries';
 @import '../../styles/utilities/color_scheme';
 @import '../../styles/utilities/text';
-@import '../../styles/utilities/grid';
+@import '../../styles/utilities/flex';
 
 .logo {
   @extend .logo-area;
@@ -61,7 +61,7 @@
   }
 }
 
-.logInButton {
+.submitButton {
   @extend .btn--secondary;
   @extend .btn--raised;
   @extend .text-shadow-dark;
@@ -115,21 +115,33 @@
   margin: 0;
 }
 
-.faEnvelope {
-  @extend .fa;
-  @extend .fa-envelope;
+.zmdiEmail {
+  @extend .zmdi;
+  @extend .zmdi-email;
   @extend .inputIcons;
 }
 
-.faLock {
-  @extend .fa;
-  @extend .fa-lock;
+.zmdiAccount {
+  @extend .zmdi;
+  @extend .zmdi-account;
   @extend .inputIcons;
 }
 
-.longArrowRight {
-  @extend .fa;
-  @extend .fa-long-arrow-right;
+.zmdiLock {
+  @extend .zmdi;
+  @extend .zmdi-lock;
+  @extend .inputIcons;
+}
+
+.zmdiCommentEdit {
+  @extend .zmdi;
+  @extend .zmdi-comment-edit;
+  @extend .inputIcons;
+}
+
+.zmdiLongArrowRight {
+  @extend .zmdi;
+  @extend .zmdi-long-arrow-right;
   position: absolute;
   right: 30px;
   font-size: 2em;

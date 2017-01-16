@@ -12,15 +12,8 @@ export class SignInFooter extends Component {
   constructor() {
     super(...arguments);
 
-    this.state = {title: ''};
-
     this.handleFooterAction = ::this.handleFooterAction;
     this.getAuthFlowType = ::this.getAuthFlowType;
-    this.handleKeyUp = ::this.handleKeyUp;
-  }
-
-  clearInput() {
-    this.setState({title: ''});
   }
 
   getAuthFlowType() {
@@ -36,13 +29,9 @@ export class SignInFooter extends Component {
     this.props.handleFooterAction(authFlow);
   }
 
-  handleKeyUp(event) {
-    if (event.keyCode === 27) this.clearInput();
-  }
-
   render() {
-    const footerActionText = this.isAltAuthFlow() || this.getAuthFlowType() === '#signin' ? 'Login' : 'Forgot Password?';
-    const footerActionIcon = this.isAltAuthFlow() ? 'faBackArrow' : 'faExclamationCircle';
+    const footerActionText = this.isAltAuthFlow() || this.getAuthFlowType() !== '#signin' ? 'Login' : 'Forgot Password?';
+    const footerActionIcon = this.isAltAuthFlow() ? 'zmdiBackArrow' : 'zmdiExclamationCircle';
     return (
       <footer className={styles.footer}>
         <div className={styles.footerAction}>

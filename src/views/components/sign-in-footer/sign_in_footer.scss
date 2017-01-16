@@ -4,11 +4,11 @@
 @import '../../styles/surface/buttons';
 @import '../../styles/surface/grid';
 @import '../../styles/surface/utility';
-@import '../../styles/font-awesome/scss/font-awesome';
+@import '../../styles/material-design-iconic-font/scss/material-design-iconic-font';
 @import '../../styles/utilities/media_queries';
 @import '../../styles/utilities/color_scheme';
 @import '../../styles/utilities/text';
-@import '../../styles/utilities/grid';
+@import '../../styles/utilities/flex';
 
 .inputIcons {
   @extend .align-start;
@@ -47,16 +47,16 @@
   font-size: 1.1em;
 }
 
-.faExclamationCircle {
-  @extend .fa;
-  @extend .fa-exclamation-circle;
+.zmdiExclamationCircle {
+  @extend .zmdi;
+  @extend .zmdi-alert-circle-o;
   @extend .inputIcons;
   @extend .inputIconStyle;
 }
 
-.faBackArrow {
-  @extend .fa;
-  @extend .fa-arrow-circle-left;
+.zmdiBackArrow {
+  @extend .zmdi;
+  @extend .zmdi-mail-reply;
   @extend .inputIcons;
   @extend .inputIconStyle;
 }
