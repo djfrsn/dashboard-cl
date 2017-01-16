@@ -40,8 +40,10 @@ export class SignInForm extends Component {
     switch (authFlowType) {
       case '#signup':
         text = 'Sign Up';
+        break;
       case '#forgotpassword':
         text = 'Reset Password';
+        break;
       default:
         text = 'Log In';
     }
@@ -79,14 +81,26 @@ export class SignInForm extends Component {
         <div className={styles.logo}><h1>Dashboard-cl</h1></div>
         <form className={styles.form}>
           {!isAltAuthFlow ? <button className={styles.createAccountButton} onClick={this.showSignUp} data-text="Create Account">+</button> : null}
-          <i className={styles.zmdiEmail} aria-hidden="true" />
-          <input className={styles.formInputs} type="text" required placeholder="Your email address" />
-          {isSignUp ? <i className={styles.zmdiAccount} aria-hidden="true" /> : null}
-          {isSignUp ? <input className={styles.formInputs} type="text" required placeholder="FirstName" /> : null}
-          <i className={styles.zmdiLock} aria-hidden="true" />
-          <input className={styles.formInputs} type="password" required placeholder="Password" />
-          {isSignUp ? <i className={styles.zmdiCommentEdit} aria-hidden="true" /> : null}
-          {isSignUp ? <input className={styles.formInputs} type="text" required placeholder="Password confirm" /> : null}
+          <div className={styles.inputContainer}>
+            <i className={styles.zmdiEmail} aria-hidden="true" />
+            <input className={styles.formInputs} type="text" required placeholder="Your email address" />
+          </div>
+          {isSignUp ?
+            <div className={styles.inputContainer}>
+              <i className={styles.zmdiAccount} aria-hidden="true" />
+              <input className={styles.formInputs} type="text" required placeholder="FirstName" />
+            </div>
+          : null}
+          <div className={styles.inputContainer}>
+            <i className={styles.zmdiLock} aria-hidden="true" />
+            <input className={styles.formInputs} type="password" required placeholder="Password" />
+          </div>
+          {isSignUp ?
+            <div className={styles.inputContainer}>
+              <i className={styles.zmdiCommentEdit} aria-hidden="true" />
+              <input className={styles.formInputs} type="text" required placeholder="Password confirm" />
+            </div>
+          : null}
           {!isAltAuthFlow ? <div className={styles.rememberMeContainer}>
             <input type="checkbox" className={styles.checkbox} />
             <p className={styles.rememberMeText}>Remember Me</p>
