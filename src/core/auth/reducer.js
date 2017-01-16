@@ -4,6 +4,7 @@ import { authActions } from './actions';
 
 export const AuthState = new Record({
   authFlow: 'initial',
+  authError: null,
   authenticated: false,
   uid: null,
   user: null
@@ -20,6 +21,7 @@ export function authReducer(state = new AuthState(), {payload, type}) {
     case authActions.SIGN_IN_FULFILLED:
       return state.merge({
         authenticated: true,
+        authError: null,
         uid: payload.uid,
         user: payload
       });
@@ -27,8 +29,14 @@ export function authReducer(state = new AuthState(), {payload, type}) {
     case authActions.SIGN_OUT_FULFILLED:
       return state.merge({
         authenticated: false,
+        authError: null,
         uid: null,
         user: null
+      });
+
+    case authActions.SIGN_IN_FAILED:
+      return state.merge({
+        authError: payload.error
       });
 
     default:

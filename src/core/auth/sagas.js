@@ -14,10 +14,10 @@ function* authFlow(type) {
   }
 }
 
-function* signIn(credentials, authProvider) {
-  console.log(firebaseAuth, firebaseAuth.signInWithEmailAndPassword)
+function* signIn(credentials) {
   try {
-    const authData = yield call([firebaseAuth, firebaseAuth.signInWithEmailAndPassword], authProvider);
+    const authData = yield call([firebaseAuth, firebaseAuth.signInWithEmailAndPassword], credentials.email, credentials.password);
+    console.log('authData', authData)
     yield put(authActions.signInFulfilled(authData.user));
     yield history.push('/');
   }
@@ -64,7 +64,7 @@ function* watchAuthFlow() {
 function* watchSignIn() {
   while (true) {
     let { payload } = yield take(authActions.SIGN_IN);
-    yield fork(signIn, payload.authProvider);
+    yield fork(signIn, payload.credentials);
   }
 }
 

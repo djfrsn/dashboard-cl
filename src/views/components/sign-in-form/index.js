@@ -91,7 +91,7 @@ export class SignInForm extends Component {
     const { email, password } = this.state.form;
 
     this.props.signInWithEmailAndPassword({ email, password });
-    this.clearInput();
+    // this.clearInput();
   }
 
   render() {
@@ -100,6 +100,7 @@ export class SignInForm extends Component {
     const isForgotPassword = authFlowType === '#forgotpassword';
     const isAltAuthFlow = this.isAltAuthFlow();
     const submitButtonText = this.getSubmitButtonText(authFlowType);
+    console.log(this.props.auth.authError)
     return (
       <div className={styles.centerContent}>
         <div className={styles.logo} style={this.state.logoPosition}><h1>Dashboard-cl</h1></div>
