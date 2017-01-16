@@ -27,9 +27,8 @@ function* signIn(credentials) {
 }
 
 function* createUser(credentials) {
-  console.log(firebaseAuth, firebaseAuth.createUserWithEmailAndPassword)
   try {
-    const authData = yield call([firebaseAuth, firebaseAuth.createUserWithEmailAndPassword], authProvider);
+    const authData = yield call([firebaseAuth, firebaseAuth.createUserWithEmailAndPassword], credentials.email, credentials.password);
     yield put(authActions.signInFulfilled(authData.user));
     yield history.push('/');
   }
@@ -71,7 +70,7 @@ function* watchSignIn() {
 function* watchCreateUser() {
   while (true) {
     let { payload } = yield take(authActions.SIGN_IN);
-    yield fork(signIn, payload.authProvider);
+    yield fork(createUser, payload.authProvider);
   }
 }
 
@@ -89,6 +88,7 @@ function* watchSignOut() {
 
 export const authSagas = [
   fork(watchAuthFlow),
+  fork(watchCreateUser),
   fork(watchSignIn),
   fork(watchSignOut)
 ];

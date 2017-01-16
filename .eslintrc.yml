@@ -18,6 +18,7 @@ ecmaFeatures:
 
 globals:
   firebase: true
+  classNames: true
 
 rules:
   array-bracket-spacing: 0

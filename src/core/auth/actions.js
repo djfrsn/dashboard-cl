@@ -20,12 +20,12 @@ export const authActions = {
 
   createUser: credentials => ({
     type: authActions.CREATE_USER,
-    payload: {authProvider}
+    payload: {credentials}
   }),
 
-  signIn: (credentials, authProvider) => ({
+  signIn: credentials => ({
     type: authActions.SIGN_IN,
-    payload: {credentials, authProvider}
+    payload: {credentials}
   }),
 
   signInFailed: error => ({
@@ -38,14 +38,14 @@ export const authActions = {
     payload: {authUser}
   }),
 
-  signInWithEmailAndPassword: (credentials) => authActions.signIn(
+  signInWithEmailAndPassword: credentials => authActions.signIn(
     credentials,
     firebase.auth.signInWithEmailAndPassword
   ),
 
-  createUserWithEmailAndPassword: (credentials) => authActions.createUser(
+  createUserWithEmailAndPassword: credentials => authActions.createUser(
     credentials,
-    new firebase.auth.createUserWithEmailAndPassword()
+    firebase.auth.createUserWithEmailAndPassword
   ),
 
   signInWithGithub: () => authActions.signIn(

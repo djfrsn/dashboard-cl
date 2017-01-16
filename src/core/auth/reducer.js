@@ -10,7 +10,6 @@ export const AuthState = new Record({
   user: null
 });
 
-
 export function authReducer(state = new AuthState(), {payload, type}) {
   switch (type) {
     case authActions.AUTH_FLOW:

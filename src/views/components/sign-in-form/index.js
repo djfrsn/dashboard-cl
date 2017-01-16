@@ -5,6 +5,7 @@ const initialFormState = { email: '', firstname: '', password: '', confirmationp
 
 export class SignInForm extends Component {
   static propTypes = {
+    auth: PropTypes.object.isRequired,
     authFlow: PropTypes.func.isRequired,
     createUserWithEmailAndPassword: PropTypes.func.isRequired,
     routing: PropTypes.object.isRequired,
@@ -31,7 +32,7 @@ export class SignInForm extends Component {
     this.setLogoPosition();
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (prevProps.auth.authFlow !== this.props.auth.authFlow) {
       this.setLogoPosition();
     }
@@ -103,8 +104,8 @@ export class SignInForm extends Component {
     console.log(this.props.auth.authError)
     return (
       <div className={styles.centerContent}>
-        <div className={styles.logo} style={this.state.logoPosition}><h1>Dashboard-cl</h1></div>
-        <form className={styles.form} onSubmit={this.handleSubmit} ref={ref => { this.form = ref}}>
+        <div className={styles.logo} style={this.state.logoPosition} ><h1>Dashboard-cl</h1></div>
+        <form className={styles.form} onSubmit={this.handleSubmit} ref={ref => { this.form = ref; }}>
           {!isAltAuthFlow ? <button className={styles.createAccountButton} onClick={this.showSignUp} data-text="Create Account">+</button> : null}
           <div className={classNames({[styles.inputContainer]: true, [styles.isForgotPassword]: isForgotPassword })}>
             <i className={styles.zmdiEmail} aria-hidden="true" />
@@ -117,10 +118,10 @@ export class SignInForm extends Component {
             </div>
           : null}
           {!isForgotPassword ?
-          <div className={styles.inputContainer}>
-            <i className={styles.zmdiLock} aria-hidden="true" />
-            <input className={styles.formInputs} type="password" value={this.state.form.password} onChange={this.handleChange} data-inputtype="password" required placeholder="Password" />
-          </div> : <p className={styles.forgotPasswordText} >Enter your email to reset password. You will receive a new password after the reset link is confirmed.</p>}
+            <div className={styles.inputContainer}>
+              <i className={styles.zmdiLock} aria-hidden="true" />
+              <input className={styles.formInputs} type="password" value={this.state.form.password} onChange={this.handleChange} data-inputtype="password" required placeholder="Password" />
+            </div> : <p className={styles.forgotPasswordText} >Enter your email to reset password. You will receive a new password after the reset link is confirmed.</p>}
           {isSignUp ?
             <div className={styles.inputContainer}>
               <i className={styles.zmdiCommentEdit} aria-hidden="true" />
