@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './sign_in_form.scss';
 
+const initialFormState = { email: '', firstname: '', password: '', confirmationpassword: '' };
 
 export class SignInForm extends Component {
   static propTypes = {
@@ -13,7 +14,10 @@ export class SignInForm extends Component {
   constructor() {
     super(...arguments);
 
-    this.state = {logoPosition: {display: 'none'}};
+    this.state = {
+      form: initialFormState,
+      logoPosition: {display: 'none'}
+    };
 
     this.getAuthFlowType = ::this.getAuthFlowType;
     this.getSubmitButtonText = ::this.getSubmitButtonText;
@@ -71,11 +75,11 @@ export class SignInForm extends Component {
   }
 
   clearInput() {
-    this.setState({title: ''});
+    this.setState({form: initialFormState});
   }
 
   handleChange(event) {
-    this.setState({title: event.target.value});
+    this.setState({form: {...this.state.form, [event.target.dataset.inputtype]: event.target.value}});
   }
 
   handleKeyUp(event) {
@@ -84,8 +88,9 @@ export class SignInForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const { email, password } = this.state.form;
 
-    this.props.signInWithEmailAndPassword();
+    this.props.signInWithEmailAndPassword({ email, password });
     this.clearInput();
   }
 
@@ -102,23 +107,23 @@ export class SignInForm extends Component {
           {!isAltAuthFlow ? <button className={styles.createAccountButton} onClick={this.showSignUp} data-text="Create Account">+</button> : null}
           <div className={classNames({[styles.inputContainer]: true, [styles.isForgotPassword]: isForgotPassword })}>
             <i className={styles.zmdiEmail} aria-hidden="true" />
-            <input className={classNames({[styles.formInputs]: true, [styles.isForgotPassword]: isForgotPassword })} type="text" required placeholder="Your email address" />
+            <input className={classNames({[styles.formInputs]: true, [styles.isForgotPassword]: isForgotPassword })} value={this.state.form.email} onChange={this.handleChange} data-inputtype="email" type="text" required placeholder="Your email address" />
           </div>
           {isSignUp ?
             <div className={styles.inputContainer}>
               <i className={styles.zmdiAccount} aria-hidden="true" />
-              <input className={styles.formInputs} type="text" required placeholder="FirstName" />
+              <input className={styles.formInputs} type="text" value={this.state.form.firstname} onChange={this.handleChange} data-inputtype="firstname" required placeholder="FirstName" />
             </div>
           : null}
           {!isForgotPassword ?
           <div className={styles.inputContainer}>
             <i className={styles.zmdiLock} aria-hidden="true" />
-            <input className={styles.formInputs} type="password" required placeholder="Password" />
+            <input className={styles.formInputs} type="password" value={this.state.form.password} onChange={this.handleChange} data-inputtype="password" required placeholder="Password" />
           </div> : <p className={styles.forgotPasswordText} >Enter your email to reset password. You will receive a new password after the reset link is confirmed.</p>}
           {isSignUp ?
             <div className={styles.inputContainer}>
               <i className={styles.zmdiCommentEdit} aria-hidden="true" />
-              <input className={styles.formInputs} type="text" required placeholder="Password confirm" />
+              <input className={styles.formInputs} type="text" value={this.state.form.confirmationPassword} onChange={this.handleChange} data-inputtype="confirmationpassword" required placeholder="Password confirm" />
             </div>
           : null}
           {!isAltAuthFlow ? <div className={styles.rememberMeContainer}>
