@@ -5,10 +5,10 @@ import SignInForm from 'views/components/sign-in-form';
 import SignInFooter from 'views/components/sign-in-footer';
 import styles from './sign_in.scss';
 
-const SignInPage = ({ auth, routing, authFlow, signIn }) => {
+const SignInPage = ({ auth, authFlow, createUserWithEmailAndPassword, routing, signInWithEmailAndPassword }) => {
   return (
     <div className={styles.signIn}>
-      <SignInForm auth={auth} routing={routing} handleSubmit={signIn} authFlow={authFlow}/>
+      <SignInForm auth={auth} routing={routing} authFlow={authFlow} createUserWithEmailAndPassword={createUserWithEmailAndPassword} signInWithEmailAndPassword={signInWithEmailAndPassword} />
       <SignInFooter auth={auth} routing={routing} handleFooterAction={authFlow} />
     </div>
   );
@@ -17,8 +17,9 @@ const SignInPage = ({ auth, routing, authFlow, signIn }) => {
 SignInPage.propTypes = {
   auth: PropTypes.object.isRequired,
   authFlow: PropTypes.func.isRequired,
+  createUserWithEmailAndPassword: PropTypes.func.isRequired,
   routing: PropTypes.object.isRequired,
-  signIn: PropTypes.func.isRequired
+  signInWithEmailAndPassword: PropTypes.func.isRequired
 };
 
 //=====================================
@@ -32,7 +33,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   authFlow: authActions.authFlow,
-  signIn: authActions.authFlow
+  createUserWithEmailAndPassword: authActions.createUserWithEmailAndPassword,
+  signInWithEmailAndPassword: authActions.signInWithEmailAndPassword
 };
 
 export default connect(

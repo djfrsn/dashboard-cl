@@ -3,6 +3,7 @@ import firebase from 'firebase';
 
 export const authActions = {
   AUTH_FLOW: 'AUTH_FLOW',
+  CREATE_USER: 'CREATE_USER',
   SIGN_IN: 'SIGN_IN',
   SIGN_IN_FAILED: 'SIGN_IN_FAILED',
   SIGN_IN_FULFILLED: 'SIGN_IN_FULFILLED',
@@ -17,9 +18,14 @@ export const authActions = {
     payload: {type}
   }),
 
-  signIn: authProvider => ({
-    type: authActions.SIGN_IN,
+  createUser: credentials => ({
+    type: authActions.CREATE_USER,
     payload: {authProvider}
+  }),
+
+  signIn: (credentials, authProvider) => ({
+    type: authActions.SIGN_IN,
+    payload: {credentials, authProvider}
   }),
 
   signInFailed: error => ({
@@ -31,6 +37,16 @@ export const authActions = {
     type: authActions.SIGN_IN_FULFILLED,
     payload: {authUser}
   }),
+
+  signInWithEmailAndPassword: (credentials) => authActions.signIn(
+    credentials,
+    firebase.auth.signInWithEmailAndPassword
+  ),
+
+  createUserWithEmailAndPassword: (credentials) => authActions.createUser(
+    credentials,
+    new firebase.auth.createUserWithEmailAndPassword()
+  ),
 
   signInWithGithub: () => authActions.signIn(
     new firebase.auth.GithubAuthProvider()

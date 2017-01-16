@@ -14,9 +14,22 @@ function* authFlow(type) {
   }
 }
 
-function* signIn(authProvider) {
+function* signIn(credentials, authProvider) {
+  console.log(firebaseAuth, firebaseAuth.signInWithEmailAndPassword)
   try {
-    const authData = yield call([firebaseAuth, firebaseAuth.signInWithPopup], authProvider);
+    const authData = yield call([firebaseAuth, firebaseAuth.signInWithEmailAndPassword], authProvider);
+    yield put(authActions.signInFulfilled(authData.user));
+    yield history.push('/');
+  }
+  catch (error) {
+    yield put(authActions.signInFailed(error));
+  }
+}
+
+function* createUser(credentials) {
+  console.log(firebaseAuth, firebaseAuth.createUserWithEmailAndPassword)
+  try {
+    const authData = yield call([firebaseAuth, firebaseAuth.createUserWithEmailAndPassword], authProvider);
     yield put(authActions.signInFulfilled(authData.user));
     yield history.push('/');
   }
@@ -49,6 +62,13 @@ function* watchAuthFlow() {
 }
 
 function* watchSignIn() {
+  while (true) {
+    let { payload } = yield take(authActions.SIGN_IN);
+    yield fork(signIn, payload.authProvider);
+  }
+}
+
+function* watchCreateUser() {
   while (true) {
     let { payload } = yield take(authActions.SIGN_IN);
     yield fork(signIn, payload.authProvider);

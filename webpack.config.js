@@ -114,7 +114,7 @@ if (ENV_DEVELOPMENT || ENV_PRODUCTION) {
 //  DEVELOPMENT
 //-------------------------------------
 if (ENV_DEVELOPMENT) {
-  config.devtool = 'cheap-module-source-map';
+  config.devtool = 'source-map';
 
   config.entry.main.unshift(
     'babel-polyfill',

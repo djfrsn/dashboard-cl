@@ -5,8 +5,9 @@ import styles from './sign_in_form.scss';
 export class SignInForm extends Component {
   static propTypes = {
     authFlow: PropTypes.func.isRequired,
-    handleSubmit: PropTypes.func.isRequired,
-    routing: PropTypes.object.isRequired
+    createUserWithEmailAndPassword: PropTypes.func.isRequired,
+    routing: PropTypes.object.isRequired,
+    signInWithEmailAndPassword: PropTypes.func.isRequired
   };
 
   constructor() {
@@ -83,8 +84,8 @@ export class SignInForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const title = this.state.title.trim();
-    if (title.length) this.props.handleSubmit(title);
+
+    this.props.signInWithEmailAndPassword();
     this.clearInput();
   }
 
@@ -97,7 +98,7 @@ export class SignInForm extends Component {
     return (
       <div className={styles.centerContent}>
         <div className={styles.logo} style={this.state.logoPosition}><h1>Dashboard-cl</h1></div>
-        <form className={styles.form} ref={ref => { this.form = ref}}>
+        <form className={styles.form} onSubmit={this.handleSubmit} ref={ref => { this.form = ref}}>
           {!isAltAuthFlow ? <button className={styles.createAccountButton} onClick={this.showSignUp} data-text="Create Account">+</button> : null}
           <div className={classNames({[styles.inputContainer]: true, [styles.isForgotPassword]: isForgotPassword })}>
             <i className={styles.zmdiEmail} aria-hidden="true" />
@@ -124,7 +125,7 @@ export class SignInForm extends Component {
             <input type="checkbox" className={styles.checkbox} />
             <p>Remember Me</p>
           </div> : null}
-          <button className={styles.submitButton}>{submitButtonText}<i className={styles.zmdiLongArrowRight} aria-hidden="true" /></button>
+          <button type="submit" className={styles.submitButton}>{submitButtonText}<i className={styles.zmdiLongArrowRight} aria-hidden="true" /></button>
         </form>
       </div>
     );
