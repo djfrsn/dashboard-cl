@@ -21,8 +21,7 @@ export class SignInForm extends Component {
     this.handleSubmit = ::this.handleSubmit;
     this.showSignUp = ::this.showSignUp;
   }
-  showSignUp(event) {
-    event.preventDefault();
+  showSignUp() {
     this.props.authFlow('signup');
   }
 
@@ -72,7 +71,7 @@ export class SignInForm extends Component {
 
   render() {
     const authFlowType = this.getAuthFlowType();
-    const isSignUp = authFlowType === '#signup';
+    const isSignUp = this.getAuthFlowType() === '#signup';
     const isForgotPassword = authFlowType === '#forgotpassword';
     const isAltAuthFlow = this.isAltAuthFlow();
     const submitButtonText = this.getSubmitButtonText(authFlowType);

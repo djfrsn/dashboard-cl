@@ -13,6 +13,8 @@ export class SignInFooter extends Component {
     super(...arguments);
 
     this.handleFooterAction = ::this.handleFooterAction;
+    this.isAltAuthFlow = ::this.isAltAuthFlow;
+    this.isSignInFlow = ::this.isSignInFlow;
     this.getAuthFlowType = ::this.getAuthFlowType;
   }
 
@@ -24,13 +26,17 @@ export class SignInFooter extends Component {
     return this.getAuthFlowType() === '#forgotpassword' || this.getAuthFlowType() === '#signup';
   }
 
+  isSignInFlow() {
+    return !this.isAltAuthFlow();
+  }
+
   handleFooterAction() {
     const authFlow = this.isAltAuthFlow() ? 'signin' : 'forgotpassword';
     this.props.handleFooterAction(authFlow);
   }
 
   render() {
-    const footerActionText = this.isAltAuthFlow() || this.getAuthFlowType() !== '#signin' ? 'Login' : 'Forgot Password?';
+    const footerActionText = this.isAltAuthFlow() || !this.isSignInFlow() ? 'Login' : 'Forgot Password?';
     const footerActionIcon = this.isAltAuthFlow() ? 'zmdiBackArrow' : 'zmdiExclamationCircle';
     return (
       <footer className={styles.footer}>
