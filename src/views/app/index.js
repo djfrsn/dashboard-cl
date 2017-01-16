@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { authActions, getAuth } from 'core/auth';
-// import Header from 'views/components/header';
+import Notification from 'views/components/notification';
 import styles from './app.scss';
 
 // <Header
@@ -9,18 +9,19 @@ import styles from './app.scss';
 //  signOut={signOut}
 // />
 
-function App({ children }) {
+function App({ state, children }) {
+  console.log(state);
   return (
     <div className={styles.mainContainer}>
+      <Notification message={{}} />
       <main>{children}</main>
     </div>
   );
 }
 
 App.propTypes = {
-  // authenticated: PropTypes.bool.isRequired,
-  children: PropTypes.element
-  // signOut: PropTypes.func.isRequired
+  children: PropTypes.element,
+  signOut: PropTypes.func.isRequired
 };
 
 
