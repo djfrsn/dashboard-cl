@@ -1,10 +1,10 @@
-import { FirebaseList } from 'core/firebase';
+import { FirebaseConnection } from 'core/firebase';
 import { taskActions } from './actions';
 import { Task } from './task';
 
 
 
-export const taskList = new FirebaseList({
+export const taskList = new FirebaseConnection({
   onAdd: taskActions.createTaskFulfilled,
   onChange: taskActions.updateTaskFulfilled,
   onLoad: taskActions.loadTasksFulfilled,
