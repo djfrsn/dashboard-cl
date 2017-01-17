@@ -20,17 +20,21 @@ export class SignInForm extends Component {
       logoPosition: {display: 'none'}
     };
 
+    this._onShow = ::this._onShow;
     this.getAuthFlowType = ::this.getAuthFlowType;
+    this.getLogoPosition = ::this.getLogoPosition;
     this.getSubmitButtonText = ::this.getSubmitButtonText;
     this.handleChange = ::this.handleChange;
     this.handleKeyUp = ::this.handleKeyUp;
     this.handleSubmit = ::this.handleSubmit;
+    this.isAltAuthFlow = ::this.isAltAuthFlow;
     this.showSignUp = ::this.showSignUp;
   }
 
   componentDidMount() {
+    this.form = this.refs.form;
     this._onShow();
-    const authFlow = this.getAuthFlowType();
+    const authFlow = this.getLogoPosition();
     const authFlowOk = authFlow !== "" && typeof authFlow === 'string';
     if (authFlowOk) {
       this.props.authFlow(authFlow);
@@ -45,9 +49,7 @@ export class SignInForm extends Component {
 
   _onShow() {
     let form = this.state.form;
-    let heightBuffer = 190;
-    let height = this.form ? this.form.clientHeight : 370;
-    let logoPosition = { bottom: height + heightBuffer };
+    let logoPosition = this.getLogoPosition();
 
     if (this.props.auth.remembermeCredentials) {
       form = {
@@ -77,12 +79,15 @@ export class SignInForm extends Component {
     return this.getAuthFlowType() === '#forgotpassword' || this.getAuthFlowType() === '#signup';
   }
 
-  setLogoPosition() {
+  getLogoPosition() {
     let heightBuffer = 190;
-    let height = this.form ? this.form.clientHeight : 370;
-    let logoPosition = { bottom: height + heightBuffer };
+    let logoPosition = { bottom: this.form.clientHeight + heightBuffer };
 
-    this.setState({...this.state, logoPosition});
+    return logoPosition;
+  }
+
+  setLogoPosition() {
+    this.setState({...this.state, logoPosition: this.getLogoPosition() });
   }
 
   getSubmitButtonText(authFlowType) {

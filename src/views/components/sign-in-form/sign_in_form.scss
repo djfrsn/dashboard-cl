@@ -9,9 +9,11 @@
 @import '../../styles/utilities/color_scheme';
 @import '../../styles/utilities/text';
 @import '../../styles/utilities/positioning';
+@import '../../styles/utilities/animations';
 
 .logo {
   @extend .absolute-center-horizontal;
+  @extend .in-out-cubic;
   position: absolute;
   margin-top: 40px;
   width: 100%;
@@ -41,6 +43,7 @@
 .form {
   @extend .card;
   @extend .absolute-center-horizontal;
+  @extend .in-out-cubic;
   width: 260px;
   position: absolute;
   bottom: 135px;
