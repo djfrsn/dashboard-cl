@@ -4,16 +4,10 @@ import { authActions, getAuth } from 'core/auth';
 import Notification from 'views/components/notification';
 import styles from './app.scss';
 
-// <Header
-//  authenticated={authenticated}
-//  signOut={signOut}
-// />
-
-function App({ state, children }) {
-  console.log(state);
+function App({ children, notifications }) {
   return (
     <div className={styles.mainContainer}>
-      <Notification message={{}} />
+      <Notification notifications={notifications} />
       <main>{children}</main>
     </div>
   );
@@ -29,7 +23,10 @@ App.propTypes = {
 //  CONNECT
 //-------------------------------------
 
-const mapStateToProps = getAuth;
+const mapStateToProps = state => ({
+  auth: state.auth,
+  notifications: state.notifications
+});
 
 const mapDispatchToProps = {
   signOut: authActions.signOut

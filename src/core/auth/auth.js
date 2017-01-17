@@ -18,3 +18,7 @@ export function initAuth(dispatch) {
     );
   });
 }
+
+export function validateSignInInputs(credentials) {
+  return credentials.password === credentials.confirmationpassword;
+}

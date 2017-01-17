@@ -3,11 +3,13 @@ import { browserHistory as history } from 'react-router';
 import { call, fork, put, take } from 'redux-saga/effects';
 import { firebaseAuth } from 'core/firebase';
 import { authActions } from './actions';
+import { validateSignInInputs } from './auth';
+import { notificationsActions } from '../notifications/actions';
 
 
-function* authFlow(type) {
+function* authFlow(flow) {
   try {
-    yield history.push(`/sign-in#${type}`);
+    yield history.push(`/sign-in${flow}`);
   }
   catch (error) {
     yield history.push('/sign-in');
@@ -22,17 +24,29 @@ function* signIn(credentials) {
     yield history.push('/');
   }
   catch (error) {
+    yield put(notificationsActions.handleMessage(error));
     yield put(authActions.signInFailed(error));
   }
 }
 
 function* createUser(credentials) {
   try {
-    const authData = yield call([firebaseAuth, firebaseAuth.createUserWithEmailAndPassword], credentials.email, credentials.password);
-    yield put(authActions.signInFulfilled(authData.user));
-    yield history.push('/');
+    const validInputs = yield call(validateSignInInputs, credentials);
+
+      console.log('createUser', validInputs)
+    if (validInputs) {
+
+    } else {
+      console.log('bad password')
+      yield put(notificationsActions.handleMessage({ message: 'Passwords don\'t match', code: 'error'}));
+    }
+    // const authData = yield call([firebaseAuth, firebaseAuth.createUserWithEmailAndPassword], credentials.email, credentials.password);
+    // yield put(authActions.signInFulfilled(authData.user));
+    // yield history.push('/');
   }
   catch (error) {
+    debugger
+    yield put(notificationsActions.handleMessage(error));
     yield put(authActions.signInFailed(error));
   }
 }
@@ -69,8 +83,8 @@ function* watchSignIn() {
 
 function* watchCreateUser() {
   while (true) {
-    let { payload } = yield take(authActions.SIGN_IN);
-    yield fork(createUser, payload.authProvider);
+    let { payload } = yield take(authActions.CREATE_USER);
+    yield fork(createUser, payload.credentials);
   }
 }
 

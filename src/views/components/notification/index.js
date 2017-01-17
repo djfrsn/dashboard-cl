@@ -2,28 +2,36 @@ import React, { Component, PropTypes } from 'react';
 import NotificationSystem from 'react-notification-system'
 import styles from './notification.scss';
 
+// https://github.com/igorprado/react-notification-system
+
 export class Notification extends Component {
   static propTypes = {
-    message: PropTypes.object.isRequired
+    notifications: PropTypes.object.isRequired
   };
 
   constructor() {
     super(...arguments);
 
-    this._notificationSystem = null;
+    this.notificationSystem = null;
 
-    this._addNotification = ::this._addNotification;
+    this.addNotification = ::this.addNotification;
   }
 
   componentDidMount() {
-    this._notificationSystem = this.refs.notificationSystem;
+    this.notificationSystem = this.refs.notificationSystem;
   }
 
-  _addNotification(event) {
-    this._notificationSystem.addNotification({
-      message: 'Notification message',
-      level: 'success'
-    });
+  componentWillUpdate(nextProps) {
+    this.addNotification(nextProps.notifications.notification);
+  }
+
+  addNotification(notification) {
+    const { message, level } = notification;
+    const okMessage = (message !== '' && typeof message === 'string') && (level !== '' && typeof level === 'string');
+    console.log('notification', message);
+    if (okMessage) {
+      this.notificationSystem.addNotification({ message, level });
+    }
   }
 
   render() {

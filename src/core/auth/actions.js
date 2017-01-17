@@ -6,6 +6,7 @@ export const authActions = {
   CREATE_USER: 'CREATE_USER',
   SIGN_IN: 'SIGN_IN',
   SIGN_IN_FAILED: 'SIGN_IN_FAILED',
+  POST_MESSAGE: 'POST_MESSAGE',
   SIGN_IN_FULFILLED: 'SIGN_IN_FULFILLED',
 
   SIGN_OUT: 'SIGN_OUT',
@@ -31,6 +32,11 @@ export const authActions = {
   signInFailed: error => ({
     type: authActions.SIGN_IN_FAILED,
     payload: {error}
+  }),
+
+  sendNotificationMessage: notification => ({
+    type: authActions.POST_MESSAGE,
+    payload: {notification}
   }),
 
   signInFulfilled: authUser => ({

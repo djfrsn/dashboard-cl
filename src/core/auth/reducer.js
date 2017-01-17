@@ -38,6 +38,11 @@ export function authReducer(state = new AuthState(), {payload, type}) {
         authError: payload.error
       });
 
+    case authActions.CREATE_USER_FAILED:
+      return state.merge({
+        authError: payload.error
+      });
+
     default:
       return state;
   }

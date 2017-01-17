@@ -5,14 +5,14 @@ import styles from './sign_in_footer.scss';
 export class SignInFooter extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
-    handleFooterAction: PropTypes.func.isRequired,
+    authFlow: PropTypes.func.isRequired,
     routing: PropTypes.object.isRequired
   };
 
   constructor() {
     super(...arguments);
 
-    this.handleFooterAction = ::this.handleFooterAction;
+    this.authFlow = ::this.authFlow;
     this.isAltAuthFlow = ::this.isAltAuthFlow;
     this.isSignInFlow = ::this.isSignInFlow;
     this.getAuthFlowType = ::this.getAuthFlowType;
@@ -30,9 +30,9 @@ export class SignInFooter extends Component {
     return !this.isAltAuthFlow();
   }
 
-  handleFooterAction() {
-    const authFlow = this.isAltAuthFlow() ? 'signin' : 'forgotpassword';
-    this.props.handleFooterAction(authFlow);
+  authFlow() {
+    const authFlow = this.isAltAuthFlow() ? '#signin' : '#forgotpassword';
+    this.props.authFlow(authFlow);
   }
 
   render() {
@@ -42,7 +42,7 @@ export class SignInFooter extends Component {
       <footer className={styles.footer}>
         <div className={styles.footerAction}>
           <i className={styles[footerActionIcon]} aria-hidden="true" />
-          <p className={styles.footerActionText} onClick={this.handleFooterAction}>{footerActionText}</p>
+          <p className={styles.footerActionText} onClick={this.authFlow}>{footerActionText}</p>
         </div>
       </footer>
     );

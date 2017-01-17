@@ -30,6 +30,8 @@ export class SignInForm extends Component {
 
   componentDidMount() {
     this.setLogoPosition();
+    this.props.authFlow(this.getAuthFlowType());
+    this.form = this.refs.form;
   }
 
   componentDidUpdate(prevProps) {
@@ -39,7 +41,7 @@ export class SignInForm extends Component {
   }
 
   showSignUp() {
-    this.props.authFlow('signup');
+    this.props.authFlow('#signup');
   }
 
   getAuthFlowType() {
@@ -75,7 +77,7 @@ export class SignInForm extends Component {
     return text;
   }
 
-  clearInput() {
+  clearInputs() {
     this.setState({form: initialFormState});
   }
 
@@ -89,10 +91,23 @@ export class SignInForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { email, password } = this.state.form;
+    const { email, password, firstname, confirmationpassword } = this.state.form;
+    const authFlow = this.props.auth.authFlow;
 
-    this.props.signInWithEmailAndPassword({ email, password });
-    // this.clearInput();
+    switch (authFlow) {
+      case 'initial' || '#signin':
+        this.props.signInWithEmailAndPassword({ email, password });
+        break;
+      case '#signup':
+        this.props.createUserWithEmailAndPassword({ email, password, firstname, confirmationpassword });
+        break;
+      case '#forgotpassword':
+        this.props.forgotPassword({ email });
+        break;
+      default:
+    }
+
+    // this.clearInputs();
   }
 
   render() {
@@ -101,11 +116,10 @@ export class SignInForm extends Component {
     const isForgotPassword = authFlowType === '#forgotpassword';
     const isAltAuthFlow = this.isAltAuthFlow();
     const submitButtonText = this.getSubmitButtonText(authFlowType);
-    console.log(this.props.auth.authError)
     return (
       <div className={styles.centerContent}>
         <div className={styles.logo} style={this.state.logoPosition} ><h1>Dashboard-cl</h1></div>
-        <form className={styles.form} onSubmit={this.handleSubmit} ref={ref => { this.form = ref; }}>
+        <form className={styles.form} onSubmit={this.handleSubmit} ref="form" >
           {!isAltAuthFlow ? <button className={styles.createAccountButton} onClick={this.showSignUp} data-text="Create Account">+</button> : null}
           <div className={classNames({[styles.inputContainer]: true, [styles.isForgotPassword]: isForgotPassword })}>
             <i className={styles.zmdiEmail} aria-hidden="true" />
@@ -125,7 +139,7 @@ export class SignInForm extends Component {
           {isSignUp ?
             <div className={styles.inputContainer}>
               <i className={styles.zmdiCommentEdit} aria-hidden="true" />
-              <input className={styles.formInputs} type="text" value={this.state.form.confirmationPassword} onChange={this.handleChange} data-inputtype="confirmationpassword" required placeholder="Password confirm" />
+              <input className={styles.formInputs} type="password" value={this.state.form.confirmationpassword} onChange={this.handleChange} data-inputtype="confirmationpassword" required placeholder="Password confirm" />
             </div>
           : null}
           {!isAltAuthFlow ? <div className={styles.rememberMeContainer}>
