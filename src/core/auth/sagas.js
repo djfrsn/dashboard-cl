@@ -17,15 +17,14 @@ function* authFlow(flow) {
 }
 
 function* signIn(credentials) {
+  debugger
   try {
     const authData = yield call([firebaseAuth, firebaseAuth.signInWithEmailAndPassword], credentials.email, credentials.password);
-    console.log('authData', authData)
-    yield put(authActions.signInFulfilled(authData.user));
+    yield put(authActions.signInFulfilled(authData));
     yield history.push('/');
   }
   catch (error) {
     yield put(notificationsActions.handleMessage(error));
-    yield put(authActions.signInFailed(error));
   }
 }
 
@@ -33,21 +32,18 @@ function* createUser(credentials) {
   try {
     const validInputs = yield call(validateSignInInputs, credentials);
 
-      console.log('createUser', validInputs)
     if (validInputs) {
-
+      const authData = yield call([firebaseAuth, firebaseAuth.createUserWithEmailAndPassword], credentials.email, credentials.password);
+      yield authData.updateProfile({ displayName: credentials.firstname });
+      yield put(authActions.signInFulfilled(authData));
+      yield history.push('/');
     } else {
-      console.log('bad password')
       yield put(notificationsActions.handleMessage({ message: 'Passwords don\'t match', code: 'error'}));
     }
-    // const authData = yield call([firebaseAuth, firebaseAuth.createUserWithEmailAndPassword], credentials.email, credentials.password);
-    // yield put(authActions.signInFulfilled(authData.user));
-    // yield history.push('/');
+
   }
   catch (error) {
-    debugger
     yield put(notificationsActions.handleMessage(error));
-    yield put(authActions.signInFailed(error));
   }
 }
 

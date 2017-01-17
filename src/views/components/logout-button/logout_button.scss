@@ -1,0 +1,16 @@
+@import '../../styles/surface/cards_tiles';
+@import '../../styles/surface/nav';
+@import '../../styles/surface/tooltip';
+@import '../../styles/surface/buttons';
+@import '../../styles/surface/grid';
+@import '../../styles/surface/utility';
+@import '../../styles/material-design-iconic-font/scss/material-design-iconic-font';
+@import '../../styles/utilities/media_queries';
+@import '../../styles/utilities/color_scheme';
+@import '../../styles/utilities/text';
+@import '../../styles/utilities/positioning';
+
+.logoutButton {
+  @extend .btn--raised;
+  @extend .secondary-background-gradient;
+}

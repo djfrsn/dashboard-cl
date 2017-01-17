@@ -6,7 +6,7 @@ const getMessageType = data => {
   let type;
   const messageTypes = {
     isSuccess: ['tag'].indexOf(data.code) >= 0,
-    isError: ['error', 'auth/invalid-email'].indexOf(data.code) >= 0,
+    isError: ['error', 'auth/email-already-in-use', 'auth/weak-password', 'auth/invalid-email', 'auth/user-disabled', 'auth/user-not-found', 'auth/wrong-password'].indexOf(data.code) >= 0,
     isWarning: ['tag'].indexOf(data.code) >= 0,
     isInfo: ['tag'].indexOf(data.code) >= 0
   };

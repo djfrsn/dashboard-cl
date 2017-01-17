@@ -30,7 +30,11 @@ export class SignInForm extends Component {
 
   componentDidMount() {
     this.setLogoPosition();
-    this.props.authFlow(this.getAuthFlowType());
+    const authFlow = this.getAuthFlowType();
+    const authFlowOk = authFlow !== "" && typeof authFlow === 'string';
+    if (authFlowOk) {
+      this.props.authFlow(authFlow);
+    }
     this.form = this.refs.form;
   }
 

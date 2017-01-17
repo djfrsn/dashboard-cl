@@ -1,41 +1,20 @@
 import { List } from 'immutable';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { taskActions, getVisibleTasks } from 'core/tasks';
-import TaskFilters from 'views/components/task-filters';
-import TaskForm from 'views/components/task-form';
-import TaskList from 'views/components/task-list';
+import { authActions } from 'core/auth';
+import LogoutButton from 'views/components/logout-button';
 
 
-const TasksPage = ({createTask, location, removeTask, tasks, updateTask}) => {
-  const { filter } = location.query;
-
+const TasksPage = ({signOut}) => {
   return (
-    <div className="g-row">
-      <div className="g-col">
-        <TaskForm handleSubmit={createTask} />
-      </div>
-
-      <div className="g-col">
-        <TaskFilters filter={filter} />
-        <TaskList
-          filter={filter}
-          removeTask={removeTask}
-          tasks={tasks}
-          updateTask={updateTask}
-        />
-      </div>
+    <div>
+      <LogoutButton signOut={signOut} />
     </div>
   );
 };
 
 TasksPage.propTypes = {
-  createTask: PropTypes.func.isRequired,
-  filterTasks: PropTypes.func.isRequired,
-  location: PropTypes.object.isRequired,
-  removeTask: PropTypes.func.isRequired,
-  tasks: PropTypes.instanceOf(List),
-  updateTask: PropTypes.func.isRequired
+  signOut: PropTypes.func.isRequired
 };
 
 
@@ -44,14 +23,11 @@ TasksPage.propTypes = {
 //-------------------------------------
 
 const mapStateToProps = state => ({
-  tasks: getVisibleTasks(state)
+  auth: state.auth
 });
 
 const mapDispatchToProps = {
-  createTask: taskActions.createTask,
-  filterTasks: taskActions.filterTasks,
-  removeTask: taskActions.removeTask,
-  updateTask: taskActions.updateTask
+  signOut: authActions.signOut
 };
 
 export default connect(

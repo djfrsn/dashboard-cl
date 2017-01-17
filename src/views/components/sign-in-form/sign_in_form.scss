@@ -83,12 +83,10 @@
   @extend .tooltip;
   @extend .btn--float;
   @extend .nudge--right;
+  @extend .secondary-background-gradient;
   position: absolute;
   top: 10px;
   right: -33px;
-  background: rgba(39,116,85,1);
-  background: radial-gradient(ellipse at center, rgba(39,116,85,1) 0%, rgba(39,116,85,0.96) 20%, rgba(42,79,110,0.8) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#277455', endColorstr='#2a4f6e', GradientType=1 );
   @include tablet-portrait-and-up {
     right: -38px;
   }
