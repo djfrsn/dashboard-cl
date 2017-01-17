@@ -4,6 +4,7 @@ import { authActions } from './actions';
 
 export const AuthState = new Record({
   authFlow: 'initial',
+  remembermeCredentials: null,
   authError: null,
   authenticated: false,
   uid: null,
@@ -42,6 +43,9 @@ export function authReducer(state = new AuthState(), {payload, type}) {
       return state.merge({
         authError: payload.error
       });
+
+    case authActions.SET_CREDENTIALS_FROM_LOCAL_STORAGE:
+      return state.set('remembermeCredentials', payload.remembermeCredentials);
 
     default:
       return state;

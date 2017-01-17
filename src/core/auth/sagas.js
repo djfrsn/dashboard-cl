@@ -3,7 +3,7 @@ import { browserHistory as history } from 'react-router';
 import { call, fork, put, take } from 'redux-saga/effects';
 import { firebaseAuth } from 'core/firebase';
 import { authActions } from './actions';
-import { validateSignInInputs } from './auth';
+import { validateSignInInputs, rememberMe } from './auth';
 import { notificationsActions } from '../notifications/actions';
 
 
@@ -12,14 +12,15 @@ function* authFlow(flow) {
     yield history.push(`/sign-in${flow}`);
   }
   catch (error) {
-    yield history.push('/sign-in');
+    yield history.push('/');
   }
 }
 
 function* signIn(credentials) {
-  debugger
   try {
     const authData = yield call([firebaseAuth, firebaseAuth.signInWithEmailAndPassword], credentials.email, credentials.password);
+    const localCredentials = yield call(rememberMe, credentials);
+    yield put(authActions.setCredentialsFromLocalStorage(localCredentials));
     yield put(authActions.signInFulfilled(authData));
     yield history.push('/');
   }

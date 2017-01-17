@@ -28,7 +28,7 @@ export class Notification extends Component {
   addNotification(notification) {
     const { message, level } = notification;
     const okMessage = (message !== '' && typeof message === 'string') && (level !== '' && typeof level === 'string');
-    console.log('notification', message);
+    console.log('notification:', message);
     if (okMessage) {
       this.notificationSystem.addNotification({ message, level });
     }

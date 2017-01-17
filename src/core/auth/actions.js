@@ -7,6 +7,7 @@ export const authActions = {
   SIGN_IN: 'SIGN_IN',
   SIGN_IN_FAILED: 'SIGN_IN_FAILED',
   POST_MESSAGE: 'POST_MESSAGE',
+  SET_CREDENTIALS_FROM_LOCAL_STORAGE: 'SET_CREDENTIALS_FROM_LOCAL_STORAGE',
   SIGN_IN_FULFILLED: 'SIGN_IN_FULFILLED',
 
   SIGN_OUT: 'SIGN_OUT',
@@ -34,11 +35,6 @@ export const authActions = {
     payload: {error}
   }),
 
-  sendNotificationMessage: notification => ({
-    type: authActions.POST_MESSAGE,
-    payload: {notification}
-  }),
-
   signInFulfilled: authUser => ({
     type: authActions.SIGN_IN_FULFILLED,
     payload: {authUser}
@@ -54,18 +50,6 @@ export const authActions = {
     firebase.auth.createUserWithEmailAndPassword
   ),
 
-  signInWithGithub: () => authActions.signIn(
-    new firebase.auth.GithubAuthProvider()
-  ),
-
-  signInWithGoogle: () => authActions.signIn(
-    new firebase.auth.GoogleAuthProvider()
-  ),
-
-  signInWithTwitter: () => authActions.signIn(
-    new firebase.auth.TwitterAuthProvider()
-  ),
-
   signOut: () => ({
     type: authActions.SIGN_OUT
   }),
@@ -77,5 +61,11 @@ export const authActions = {
 
   signOutFulfilled: () => ({
     type: authActions.SIGN_OUT_FULFILLED
+  }),
+
+  setCredentialsFromLocalStorage: remembermeCredentials => ({
+    type: authActions.SET_CREDENTIALS_FROM_LOCAL_STORAGE,
+    payload: {remembermeCredentials}
+
   })
 };

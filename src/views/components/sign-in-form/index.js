@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './sign_in_form.scss';
 
-const initialFormState = { email: '', firstname: '', password: '', confirmationpassword: '' };
+const initialFormState = { email: '', firstname: '', password: '', confirmationpassword: '', rememberme: false };
 
 export class SignInForm extends Component {
   static propTypes = {
@@ -29,19 +29,40 @@ export class SignInForm extends Component {
   }
 
   componentDidMount() {
-    this.setLogoPosition();
+    this._onShow();
     const authFlow = this.getAuthFlowType();
     const authFlowOk = authFlow !== "" && typeof authFlow === 'string';
     if (authFlowOk) {
       this.props.authFlow(authFlow);
     }
-    this.form = this.refs.form;
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.auth.authFlow !== this.props.auth.authFlow) {
       this.setLogoPosition();
     }
+  }
+
+  _onShow() {
+    let form = this.state.form;
+    let heightBuffer = 190;
+    let height = this.form ? this.form.clientHeight : 370;
+    let logoPosition = { bottom: height + heightBuffer };
+
+    if (this.props.auth.remembermeCredentials) {
+      form = {
+        ...this.state.form,
+        rememberme: true,
+        email: this.props.auth.remembermeCredentials.email,
+        password: this.props.auth.remembermeCredentials.password
+      };
+    }
+
+    this.setState({
+      ...this.state,
+      logoPosition,
+      form
+    });
   }
 
   showSignUp() {
@@ -86,7 +107,12 @@ export class SignInForm extends Component {
   }
 
   handleChange(event) {
-    this.setState({form: {...this.state.form, [event.target.dataset.inputtype]: event.target.value}});
+    const inputtype = event.target.dataset.inputtype;
+
+    this.setState({
+      form: {...this.state.form,
+      [inputtype]: inputtype === 'rememberme' ? event.target.checked : event.target.value}
+    });
   }
 
   handleKeyUp(event) {
@@ -95,12 +121,13 @@ export class SignInForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { email, password, firstname, confirmationpassword } = this.state.form;
+    const { email, password, firstname, confirmationpassword, rememberme } = this.state.form;
     const authFlow = this.props.auth.authFlow;
 
     switch (authFlow) {
-      case 'initial' || '#signin':
-        this.props.signInWithEmailAndPassword({ email, password });
+      case 'initial':
+      case '#signin':
+        this.props.signInWithEmailAndPassword({ email, password, rememberme });
         break;
       case '#signup':
         this.props.createUserWithEmailAndPassword({ email, password, firstname, confirmationpassword });
@@ -111,7 +138,7 @@ export class SignInForm extends Component {
       default:
     }
 
-    // this.clearInputs();
+    this.clearInputs();
   }
 
   render() {
@@ -147,7 +174,7 @@ export class SignInForm extends Component {
             </div>
           : null}
           {!isAltAuthFlow ? <div className={styles.rememberMeContainer}>
-            <input type="checkbox" className={styles.checkbox} />
+            <input type="checkbox" checked={this.state.form.rememberme} className={styles.checkbox} onChange={this.handleChange} data-inputtype="rememberme" />
             <p>Remember Me</p>
           </div> : null}
           <button type="submit" className={styles.submitButton}>{submitButtonText}<i className={styles.zmdiLongArrowRight} aria-hidden="true" /></button>
