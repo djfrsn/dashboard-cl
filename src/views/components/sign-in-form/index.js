@@ -82,7 +82,7 @@ export class SignInForm extends Component {
   getLogoPosition() {
     let heightBuffer = 190;
     let logoPosition = { bottom: this.form.clientHeight + heightBuffer };
-
+    console.log(this.form.clientHeight, this.form.offsetHeight)
     return logoPosition;
   }
 

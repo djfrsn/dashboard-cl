@@ -36,6 +36,7 @@ function* createUser(credentials) {
     if (validInputs) {
       const authData = yield call([firebaseAuth, firebaseAuth.createUserWithEmailAndPassword], credentials.email, credentials.password);
       yield authData.updateProfile({ displayName: credentials.firstname });
+      // run fork for updateProfile to firebaseDB
       yield put(authActions.signInFulfilled(authData));
       yield history.push('/');
     } else {
