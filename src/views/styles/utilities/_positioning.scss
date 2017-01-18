@@ -1,8 +1,8 @@
 .flex-center {
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 .flex-wrap {
@@ -17,9 +17,9 @@
 
 .flex-columns {
    display: flex;
-   align-items: center;
-   justify-content: center;
    flex-flow: column wrap;
+   justify-content: center;
+   align-items: center;
    align-content: center;
 }
 

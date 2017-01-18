@@ -5,9 +5,9 @@
 
 .inputIcons {
   @extend .align-start;
-  color: themeColor(dark);
   position: relative;
   top: 10px;
+  color: themeColor(dark);
   font-size: 1.5em;
 
   @include desktop-and-up {
@@ -34,9 +34,9 @@
 }
 
 .footerIconStyle {
-  color: themeColor(light);
   top: 42.5%;
   left: -7px;
+  color: themeColor(light);
   font-size: 1.1em;
 }
 

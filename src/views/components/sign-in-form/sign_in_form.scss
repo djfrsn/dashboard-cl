@@ -14,14 +14,14 @@
   @extend .absolute-center-horizontal;
   @extend .in-out-cubic;
   position: absolute;
-  margin-top: 40px;
   width: 100%;
   max-width: 260px;
+  margin-top: 40px;
   text-align: center;
   h1 {
     margin: 0;
-    font-size: 2.7em;
     color: #b8b8b8;
+    font-size: 2.7em;
   }
   @include tablet-landscape-and-up {
     max-width: 340px;
@@ -33,8 +33,8 @@
 
 // Controls main content size
 .centerContent {
-  max-width: 340px;
   width: 100%;
+  max-width: 340px;
   height: 75%;
   margin-top: 20px;
 }
@@ -43,9 +43,9 @@
   @extend .card;
   @extend .absolute-center-horizontal;
   @extend .in-out-cubic;
-  width: 260px;
   position: absolute;
   bottom: 135px;
+  width: 260px;
   background-color: themeColor(light);
   input {
     display: flex;
@@ -87,9 +87,9 @@
 }
 
 .forgotPasswordText {
-  color: $gray;
-  width: 85%;
   float: right;
+  width: 85%;
+  color: $gray;
   font-size: 0.8em;
 }
 
