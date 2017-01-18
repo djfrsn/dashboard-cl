@@ -9,6 +9,7 @@ export class SignInForm extends Component {
     authFlow: PropTypes.func.isRequired,
     createUserWithEmailAndPassword: PropTypes.func.isRequired,
     routing: PropTypes.object.isRequired,
+    sendPasswordResetEmail: PropTypes.func.isRequired,
     signInWithEmailAndPassword: PropTypes.func.isRequired
   };
 
@@ -34,7 +35,7 @@ export class SignInForm extends Component {
   componentDidMount() {
     this.form = this.refs.form;
     this._onShow();
-    const authFlow = this.getLogoPosition();
+    const authFlow = this.getAuthFlowType();
     const authFlowOk = authFlow !== "" && typeof authFlow === 'string';
     if (authFlowOk) {
       this.props.authFlow(authFlow);
@@ -82,7 +83,6 @@ export class SignInForm extends Component {
   getLogoPosition() {
     let heightBuffer = 190;
     let logoPosition = { bottom: this.form.clientHeight + heightBuffer };
-    console.log(this.form.clientHeight, this.form.offsetHeight)
     return logoPosition;
   }
 
@@ -138,7 +138,7 @@ export class SignInForm extends Component {
         this.props.createUserWithEmailAndPassword({ email, password, firstname, confirmationpassword });
         break;
       case '#forgotpassword':
-        this.props.forgotPassword({ email });
+        this.props.sendPasswordResetEmail({ email });
         break;
       default:
     }

@@ -69,9 +69,43 @@
   width: 85% !important;
   color: themeColor(fracture) !important;
   &.isForgotPassword {
-    margin-bottom: 20px;
+    margin-bottom: 0;
   }
 }
+
+.inputContainer {
+  position: relative;
+  height: 80px;
+  &.isForgotPassword {
+    height: 50px;
+  }
+}
+
+.inputIcons {
+  @extend .align-start;
+  color: themeColor(dark);
+  position: relative;
+  top: 10px;
+  font-size: 1.5em;
+
+  @include desktop-and-up {
+    left: 2%;
+  }
+}
+
+.rememberMeContainer {
+  @extend .flex-rows;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.forgotPasswordText {
+  color: $gray;
+  width: 85%;
+  float: right;
+  font-size: 0.8em;
+}
+
 
 .submitButton {
   @extend .btn--secondary;
@@ -99,36 +133,6 @@
   @include desktop-and-up {
     right: -44px;
   }
-}
-
-.inputContainer {
-  position: relative;
-  height: 80px;
-}
-
-.inputIcons {
-  @extend .align-start;
-  color: themeColor(dark);
-  position: relative;
-  top: 10px;
-  font-size: 1.5em;
-
-  @include desktop-and-up {
-    left: 2%;
-  }
-}
-
-.rememberMeContainer {
-  @extend .flex-rows;
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.forgotPasswordText {
-  color: $gray;
-  width: 85%;
-  float: right;
-  font-size: 0.8em;
 }
 
 .checkbox {

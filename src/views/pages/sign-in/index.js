@@ -6,10 +6,10 @@ import SignInForm from 'views/components/sign-in-form';
 import SignInFooter from 'views/components/sign-in-footer';
 import styles from './sign_in.scss';
 
-const SignInPage = ({ auth, authFlow, createUserWithEmailAndPassword, routing, signInWithEmailAndPassword }) => {
+const SignInPage = ({ auth, authFlow, createUserWithEmailAndPassword, routing, sendPasswordResetEmail, signInWithEmailAndPassword }) => {
   return (
     <div className={styles.signIn}>
-      <SignInForm auth={auth} routing={routing} authFlow={authFlow} createUserWithEmailAndPassword={createUserWithEmailAndPassword} signInWithEmailAndPassword={signInWithEmailAndPassword} />
+      <SignInForm auth={auth} routing={routing} authFlow={authFlow} createUserWithEmailAndPassword={createUserWithEmailAndPassword} signInWithEmailAndPassword={signInWithEmailAndPassword} sendPasswordResetEmail={sendPasswordResetEmail}/>
       <SignInFooter auth={auth} routing={routing} authFlow={authFlow} />
     </div>
   );
@@ -20,6 +20,7 @@ SignInPage.propTypes = {
   authFlow: PropTypes.func.isRequired,
   createUserWithEmailAndPassword: PropTypes.func.isRequired,
   routing: PropTypes.object.isRequired,
+  sendPasswordResetEmail: PropTypes.func.isRequired,
   signInWithEmailAndPassword: PropTypes.func.isRequired
 };
 
@@ -35,6 +36,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   authFlow: authActions.authFlow,
   createUserWithEmailAndPassword: authActions.createUserWithEmailAndPassword,
+  sendPasswordResetEmail: authActions.sendPasswordResetEmail,
   signInWithEmailAndPassword: authActions.signInWithEmailAndPassword
 };
 

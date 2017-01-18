@@ -4,6 +4,7 @@ import firebase from 'firebase';
 export const authActions = {
   AUTH_FLOW: 'AUTH_FLOW',
   CREATE_USER: 'CREATE_USER',
+  SEND_PASSWORD_RESET_EMAIL: 'SEND_PASSWORD_RESET_EMAIL',
   SIGN_IN: 'SIGN_IN',
   SIGN_IN_FAILED: 'SIGN_IN_FAILED',
   POST_MESSAGE: 'POST_MESSAGE',
@@ -23,6 +24,11 @@ export const authActions = {
   createUser: credentials => ({
     type: authActions.CREATE_USER,
     payload: {credentials}
+  }),
+
+  sendPasswordResetEmail: email => ({
+    type: authActions.SEND_PASSWORD_RESET_EMAIL,
+    payload: {email}
   }),
 
   signIn: credentials => ({

@@ -5,7 +5,30 @@ import { firebaseAuth } from 'core/firebase';
 import { authActions } from './actions';
 import { validateSignInInputs, rememberMe } from './auth';
 import { notificationsActions } from '../notifications/actions';
+import { authConnection } from './auth-connection';
 
+function subscribe() {
+  return eventChannel(emit => authConnection.subscribe(emit));
+}
+
+function* read() {
+  const channel = yield call(subscribe);
+  while (true) {
+    let action = yield take(channel);
+    yield put(action);
+  }
+}
+
+function* write(context, method, onError, ...params) {
+  try {
+    yield call([context, method], ...params);
+  }
+  catch (error) {
+    yield put(onError(error));
+  }
+}
+
+const updateUserData = write.bind(null, authConnection, authConnection.push, authActions.updateUserDataFailed);
 
 function* authFlow(flow) {
   try {
@@ -13,6 +36,38 @@ function* authFlow(flow) {
   }
   catch (error) {
     yield history.push('/');
+  }
+}
+
+function* createUser(credentials) {
+  try {
+    const validInputs = yield call(validateSignInInputs, credentials);
+
+    if (validInputs) {
+      const authData = yield call([firebaseAuth, firebaseAuth.createUserWithEmailAndPassword], credentials.email, credentials.password);
+      authConnection.path = `users/${authData.uid}`;
+      yield authData.updateProfile({ displayName: credentials.firstname });
+      yield fork(updateUserData, { firstName: credentials.firstname, uid: authData.uid, email: credentials.email });
+      yield put(authActions.signInFulfilled(authData));
+      yield history.push('/');
+    } else {
+      yield put(notificationsActions.handleMessage({ message: 'Passwords don\'t match.', code: 'error'}));
+    }
+
+  }
+  catch (error) {
+    yield put(notificationsActions.handleMessage(error));
+  }
+}
+
+function* sendPasswordResetEmail(credentials) {
+  try {
+    yield call([firebaseAuth, firebaseAuth.sendPasswordResetEmail], credentials.email);
+    yield put(notificationsActions.handleMessage({ message: 'A password reset email has been sent successfully!', code: 'success'}));
+    yield history.push('/');
+  }
+  catch (error) {
+    yield put(notificationsActions.handleMessage(error));
   }
 }
 
@@ -29,26 +84,6 @@ function* signIn(credentials) {
   }
 }
 
-function* createUser(credentials) {
-  try {
-    const validInputs = yield call(validateSignInInputs, credentials);
-
-    if (validInputs) {
-      const authData = yield call([firebaseAuth, firebaseAuth.createUserWithEmailAndPassword], credentials.email, credentials.password);
-      yield authData.updateProfile({ displayName: credentials.firstname });
-      // run fork for updateProfile to firebaseDB
-      yield put(authActions.signInFulfilled(authData));
-      yield history.push('/');
-    } else {
-      yield put(notificationsActions.handleMessage({ message: 'Passwords don\'t match', code: 'error'}));
-    }
-
-  }
-  catch (error) {
-    yield put(notificationsActions.handleMessage(error));
-  }
-}
-
 function* signOut() {
   try {
     yield call([firebaseAuth, firebaseAuth.signOut]);
@@ -59,7 +94,6 @@ function* signOut() {
     yield put(authActions.signOutFailed(error));
   }
 }
-
 
 //=====================================
 //  WATCHERS
@@ -79,6 +113,13 @@ function* watchSignIn() {
   }
 }
 
+function* watchSignOut() {
+  while (true) {
+    yield take(authActions.SIGN_OUT);
+    yield fork(signOut);
+  }
+}
+
 function* watchCreateUser() {
   while (true) {
     let { payload } = yield take(authActions.CREATE_USER);
@@ -86,10 +127,10 @@ function* watchCreateUser() {
   }
 }
 
-function* watchSignOut() {
+function* watchSendPasswordResetEmail() {
   while (true) {
-    yield take(authActions.SIGN_OUT);
-    yield fork(signOut);
+    let { payload } = yield take(authActions.SEND_PASSWORD_RESET_EMAIL);
+    yield fork(sendPasswordResetEmail, payload.email);
   }
 }
 
@@ -101,6 +142,7 @@ function* watchSignOut() {
 export const authSagas = [
   fork(watchAuthFlow),
   fork(watchCreateUser),
+  fork(watchSendPasswordResetEmail),
   fork(watchSignIn),
   fork(watchSignOut)
 ];

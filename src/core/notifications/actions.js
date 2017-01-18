@@ -2,37 +2,37 @@ import pickBy from 'lodash.pickby';
 
 export const storeDispatch = storeDispatch => { return storeDispatch; };
 
-const getMessageType = data => {
-  let type;
-  const messageTypes = {
-    isSuccess: ['tag'].indexOf(data.code) >= 0,
+const getMessageLevel = data => {
+  let level;
+  const messageLevels = {
+    isSuccess: ['success'].indexOf(data.code) >= 0,
     isError: ['error', 'auth/email-already-in-use', 'auth/weak-password', 'auth/invalid-email', 'auth/user-disabled', 'auth/user-not-found', 'auth/wrong-password'].indexOf(data.code) >= 0,
-    isWarning: ['tag'].indexOf(data.code) >= 0,
-    isInfo: ['tag'].indexOf(data.code) >= 0
+    isWarning: ['warning'].indexOf(data.code) >= 0,
+    isInfo: ['info'].indexOf(data.code) >= 0
   };
 
-  const messageType = Object.keys(pickBy(messageTypes, val => {
-    return val === true;
+  const messageLevel = Object.keys(pickBy(messageLevels, level => {
+    return level === true;
   }))[0];
 
-  switch(messageType) {
+  switch(messageLevel) {
     case 'isSuccess':
-      type = 'success';
+      level = 'success';
       break;
     case 'isError':
-      type = 'error';
+      level = 'error';
       break;
     case 'isWarning':
-      type = 'warning';
+      level = 'warning';
       break;
     case 'isInfo':
-      type = 'info';
+      level = 'info';
       break;
     default:
-      type = '';
+      level = '';
   }
 
-  return type;
+  return level;
 }
 
 export const notificationsActions = {
@@ -49,5 +49,5 @@ export const notificationsActions = {
     payload: {notification: {message: '', level: ''}}
   }),
 
-  handleMessage: data => notificationsActions.message({message: data.message, level: getMessageType(data)})
+  handleMessage: data => notificationsActions.message({message: data.message, level: getMessageLevel(data)})
 };

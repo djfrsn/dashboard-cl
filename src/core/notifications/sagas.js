@@ -5,8 +5,7 @@ import { call, fork, put, take } from 'redux-saga/effects';
 import { notificationsActions } from './actions';
 import { authActions } from '../auth/actions';
 
-function* message(notification) {
-  yield delay(1);
+function* clearMessage() {
   yield put(notificationsActions.clearMessage());
 }
 
@@ -18,7 +17,7 @@ function* message(notification) {
 function* watchMessage() {
   while (true) {
     yield take(notificationsActions.POST_MESSAGE);
-    yield fork(message);
+    yield fork(clearMessage);
   }
 }
 
