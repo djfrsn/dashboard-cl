@@ -31,12 +31,7 @@ function* write(context, method, onError, ...params) {
 const updateUserData = write.bind(null, authConnection, authConnection.push, authActions.updateUserDataFailed);
 
 function* authFlow(flow) {
-  try {
-    yield history.push(`/sign-in${flow === '#default' ? '' : flow}`);
-  }
-  catch (error) {
-    yield history.push('/');
-  }
+  yield history.push(`/sign-in${flow === '#default' ? '' : flow}`);
 }
 
 function* createUser(credentials) {
