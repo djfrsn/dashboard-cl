@@ -109,7 +109,7 @@ export class SignInForm extends Component {
   }
 
   clearInputs() {
-    this.setState({form: initialFormState});
+    this.setState({form: {...initialFormState, rememberme: this.state.form.rememberme}});
   }
 
   handleChange(event) {
