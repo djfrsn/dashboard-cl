@@ -1,0 +1,85 @@
+@import '../../styles/material-design-iconic-font/scss/material-design-iconic-font';
+@import '../../styles/utilities/color_scheme';
+@import '../../styles/utilities/positioning';
+@import '../../styles/utilities/media_queries';
+
+.inputIcons {
+  @extend .align-start;
+  color: themeColor(dark);
+  position: relative;
+  top: 10px;
+  font-size: 1.5em;
+
+  @include desktop-and-up {
+    left: 2%;
+  }
+}
+
+.right-button-icon {
+  position: absolute;
+  top: 11px;
+  right: 30px;
+  left: initial;
+  font-size: 2em;
+}
+
+.spinner {
+  @extend .zmdi;
+  @extend .zmdi-spinner;
+  @extend .zmdi-hc-spin;
+  @extend .inputIcons;
+  @extend .right-button-icon;
+  right: 23px;
+  color: themeColor(fracture);
+}
+
+.footerIconStyle {
+  color: themeColor(light);
+  top: 42.5%;
+  left: -7px;
+  font-size: 1.1em;
+}
+
+.exclamationCircle {
+  @extend .zmdi;
+  @extend .zmdi-alert-circle-o;
+  @extend .inputIcons;
+  @extend .footerIconStyle;
+}
+
+.backArrow {
+  @extend .zmdi;
+  @extend .zmdi-mail-reply;
+  @extend .inputIcons;
+  @extend .footerIconStyle;
+}
+
+.email {
+  @extend .zmdi;
+  @extend .zmdi-email;
+  @extend .inputIcons;
+}
+
+.account {
+  @extend .zmdi;
+  @extend .zmdi-account;
+  @extend .inputIcons;
+}
+
+.lock {
+  @extend .zmdi;
+  @extend .zmdi-lock;
+  @extend .inputIcons;
+}
+
+.commentEdit {
+  @extend .zmdi;
+  @extend .zmdi-comment-edit;
+  @extend .inputIcons;
+}
+
+.longArrowRight {
+  @extend .zmdi;
+  @extend .zmdi-long-arrow-right;
+  @extend .right-button-icon;
+}

@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Icon from '../icon';
 import styles from './sign_in_footer.scss';
 
 
@@ -37,11 +38,11 @@ export class SignInFooter extends Component {
 
   render() {
     const footerActionText = this.isAltAuthFlow() || !this.isSignInFlow() ? 'Login' : 'Forgot Password?';
-    const footerActionIcon = this.isAltAuthFlow() ? 'zmdiBackArrow' : 'zmdiExclamationCircle';
+    const footerActionIcon = this.isAltAuthFlow() ? 'backArrow' : 'exclamationCircle';
     return (
       <footer className={styles.footer}>
         <div className={styles.footerAction}>
-          <i className={styles[footerActionIcon]} aria-hidden="true" />
+          <Icon className={footerActionIcon} />
           <p className={styles.footerActionText} onClick={this.authFlow}>{footerActionText}</p>
         </div>
       </footer>

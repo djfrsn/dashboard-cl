@@ -10,18 +10,6 @@
 @import '../../styles/utilities/text';
 @import '../../styles/utilities/positioning';
 
-.inputIcons {
-  @extend .align-start;
-  color: themeColor(dark);
-  position: relative;
-  top: 31px;
-  font-size: 1.5em;
-
-  @include desktop-and-up {
-    left: 2%;
-  }
-}
-
 .footer {
   @extend .text-shadow-dark;
   @extend .primary-background-gradient;
@@ -41,25 +29,4 @@
   margin: 0;
   font-size: 0.8em;
   cursor: pointer;
-}
-
-.inputIconStyle {
-  color: themeColor(light);
-  top: 42.5%;
-  left: -7px;
-  font-size: 1.1em;
-}
-
-.zmdiExclamationCircle {
-  @extend .zmdi;
-  @extend .zmdi-alert-circle-o;
-  @extend .inputIcons;
-  @extend .inputIconStyle;
-}
-
-.zmdiBackArrow {
-  @extend .zmdi;
-  @extend .zmdi-mail-reply;
-  @extend .inputIcons;
-  @extend .inputIconStyle;
 }

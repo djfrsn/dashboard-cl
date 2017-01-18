@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Icon from '../icon';
 import styles from './sign_in_form.scss';
 
 const initialFormState = { email: '', firstname: '', password: '', confirmationpassword: '', rememberme: false };
@@ -159,23 +160,23 @@ export class SignInForm extends Component {
         <form className={styles.form} onSubmit={this.handleSubmit} ref="form" >
           {!isAltAuthFlow ? <button className={styles.createAccountButton} onClick={this.showSignUp} data-text="Create Account">+</button> : null}
           <div className={classNames({[styles.inputContainer]: true, [styles.isForgotPassword]: isForgotPassword })}>
-            <i className={styles.zmdiEmail} aria-hidden="true" />
+            <Icon className="email" />
             <input className={classNames({[styles.formInputs]: true, [styles.isForgotPassword]: isForgotPassword })} value={this.state.form.email} onChange={this.handleChange} data-inputtype="email" type="text" required placeholder="Your email address" />
           </div>
           {isSignUp ?
             <div className={styles.inputContainer}>
-              <i className={styles.zmdiAccount} aria-hidden="true" />
+              <Icon className="account" />
               <input className={styles.formInputs} type="text" value={this.state.form.firstname} onChange={this.handleChange} data-inputtype="firstname" required placeholder="FirstName" />
             </div>
           : null}
           {!isForgotPassword ?
             <div className={styles.inputContainer}>
-              <i className={styles.zmdiLock} aria-hidden="true" />
+              <Icon className="lock" />
               <input className={styles.formInputs} type="password" value={this.state.form.password} onChange={this.handleChange} data-inputtype="password" required placeholder="Password" />
             </div> : <p className={styles.forgotPasswordText} >Enter your email to reset password. You will receive a new password after the reset link is confirmed.</p>}
           {isSignUp ?
             <div className={styles.inputContainer}>
-              <i className={styles.zmdiCommentEdit} aria-hidden="true" />
+              <Icon className="commentEdit" />
               <input className={styles.formInputs} type="password" value={this.state.form.confirmationpassword} onChange={this.handleChange} data-inputtype="confirmationpassword" required placeholder="Password confirm" />
             </div>
           : null}
@@ -183,7 +184,9 @@ export class SignInForm extends Component {
             <input type="checkbox" checked={this.state.form.rememberme} className={styles.checkbox} onChange={this.handleChange} data-inputtype="rememberme" />
             <p>Remember Me</p>
           </div> : null}
-          <button type="submit" className={styles.submitButton}>{submitButtonText}<i className={classNames({[styles.zmdiLongArrowRight]: !processingRequest, [styles.zmdiSpinner]: processingRequest })} aria-hidden="true" /></button>
+          <button type="submit" className={styles.submitButton}>{submitButtonText}
+            <Icon className={processingRequest ? 'spinner' : 'longArrowRight'} />
+            </button>
         </form>
       </div>
     );

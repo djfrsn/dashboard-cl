@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 import Button from '../button';
-import Icon from '../icon';
+import Icon from '../material-icons';
 
 
 export class TaskItem extends Component {

@@ -1,15 +1,10 @@
 import React, { PropTypes } from 'react';
-import classNames from 'classnames';
+import styles from './icon_styles.scss';
 
-
-const Icon = ({className, name}) => {
-  const cssClasses = classNames('material-icons', className);
-  return <span className={cssClasses}>{name}</span>;
-};
+const Icon = ({className}) => <i className={styles[className]} aria-hidden="true" />;
 
 Icon.propTypes = {
-  className: PropTypes.string,
-  name: PropTypes.string.isRequired
+  className: PropTypes.string.isRequired
 };
 
 export default Icon;

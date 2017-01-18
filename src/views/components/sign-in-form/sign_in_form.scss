@@ -4,7 +4,6 @@
 @import '../../styles/surface/buttons';
 @import '../../styles/surface/grid';
 @import '../../styles/surface/utility';
-@import '../../styles/material-design-iconic-font/scss/material-design-iconic-font';
 @import '../../styles/utilities/media_queries';
 @import '../../styles/utilities/color_scheme';
 @import '../../styles/utilities/text';
@@ -81,18 +80,6 @@
   }
 }
 
-.inputIcons {
-  @extend .align-start;
-  color: themeColor(dark);
-  position: relative;
-  top: 10px;
-  font-size: 1.5em;
-
-  @include desktop-and-up {
-    left: 2%;
-  }
-}
-
 .rememberMeContainer {
   @extend .flex-rows;
   width: 100%;
@@ -105,7 +92,6 @@
   float: right;
   font-size: 0.8em;
 }
-
 
 .submitButton {
   @extend .btn--secondary;
@@ -139,52 +125,4 @@
   @extend .align-start;
   width: 30px;
   margin: 0;
-}
-
-.right-button-icon {
-  position: absolute;
-  top: 11px;
-  right: 30px;
-  left: initial;
-  font-size: 2em;
-}
-
-.zmdiSpinner {
-  @extend .zmdi;
-  @extend .zmdi-spinner;
-  @extend .zmdi-hc-spin;
-  @extend .inputIcons;
-  @extend .right-button-icon;
-  right: 23px;
-  color: themeColor(fracture);
-}
-
-.zmdiEmail {
-  @extend .zmdi;
-  @extend .zmdi-email;
-  @extend .inputIcons;
-}
-
-.zmdiAccount {
-  @extend .zmdi;
-  @extend .zmdi-account;
-  @extend .inputIcons;
-}
-
-.zmdiLock {
-  @extend .zmdi;
-  @extend .zmdi-lock;
-  @extend .inputIcons;
-}
-
-.zmdiCommentEdit {
-  @extend .zmdi;
-  @extend .zmdi-comment-edit;
-  @extend .inputIcons;
-}
-
-.zmdiLongArrowRight {
-  @extend .zmdi;
-  @extend .zmdi-long-arrow-right;
-  @extend .right-button-icon;
 }
