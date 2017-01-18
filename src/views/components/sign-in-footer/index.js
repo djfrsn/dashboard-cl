@@ -32,7 +32,7 @@ export class SignInFooter extends Component {
   }
 
   authFlow() {
-    const authFlow = this.isAltAuthFlow() ? '#signin' : '#forgotpassword';
+    const authFlow = this.isAltAuthFlow() ? '#default' : '#forgotpassword';
     this.props.authFlow(authFlow);
   }
 

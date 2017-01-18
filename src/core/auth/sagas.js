@@ -32,7 +32,7 @@ const updateUserData = write.bind(null, authConnection, authConnection.push, aut
 
 function* authFlow(flow) {
   try {
-    yield history.push(`/sign-in${flow}`);
+    yield history.push(`/sign-in${flow === '#default' ? '' : flow}`);
   }
   catch (error) {
     yield history.push('/');

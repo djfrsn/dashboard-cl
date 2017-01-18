@@ -131,8 +131,7 @@ export class SignInForm extends Component {
     const authFlow = this.props.auth.authFlow;
 
     switch (authFlow) {
-      case 'initial':
-      case '#signin':
+      case '#default':
         this.props.signInWithEmailAndPassword({ email, password, rememberme });
         break;
       case '#signup':
