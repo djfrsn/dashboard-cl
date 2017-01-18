@@ -22,7 +22,7 @@ export class SignInForm extends Component {
     };
 
     this._onShow = ::this._onShow;
-    this.getAuthFlowType = ::this.getAuthFlowType;
+    this.getAuthFlow = ::this.getAuthFlow;
     this.getLogoPosition = ::this.getLogoPosition;
     this.getSubmitButtonText = ::this.getSubmitButtonText;
     this.handleChange = ::this.handleChange;
@@ -35,7 +35,7 @@ export class SignInForm extends Component {
   componentDidMount() {
     this.form = this.refs.form;
     this._onShow();
-    const authFlow = this.getAuthFlowType();
+    const authFlow = this.getAuthFlow();
     const authFlowOk = authFlow !== "" && typeof authFlow === 'string';
     if (authFlowOk) {
       this.props.authFlow(authFlow);
@@ -72,12 +72,12 @@ export class SignInForm extends Component {
     this.props.authFlow('#signup');
   }
 
-  getAuthFlowType() {
+  getAuthFlow() {
     return this.props.routing.locationBeforeTransitions.hash;
   }
 
   isAltAuthFlow() {
-    return this.getAuthFlowType() === '#forgotpassword' || this.getAuthFlowType() === '#signup';
+    return this.getAuthFlow() === '#forgotpassword' || this.getAuthFlow() === '#signup';
   }
 
   getLogoPosition() {
@@ -147,11 +147,12 @@ export class SignInForm extends Component {
   }
 
   render() {
-    const authFlowType = this.getAuthFlowType();
-    const isSignUp = this.getAuthFlowType() === '#signup';
+    const authFlowType = this.getAuthFlow();
+    const isSignUp = this.getAuthFlow() === '#signup';
     const isForgotPassword = authFlowType === '#forgotpassword';
     const isAltAuthFlow = this.isAltAuthFlow();
     const submitButtonText = this.getSubmitButtonText(authFlowType);
+    const processingRequest = this.props.auth.processingRequest;
     return (
       <div className={styles.centerContent}>
         <div className={styles.logo} style={this.state.logoPosition} ><h1>Dashboard-cl</h1></div>
@@ -182,7 +183,7 @@ export class SignInForm extends Component {
             <input type="checkbox" checked={this.state.form.rememberme} className={styles.checkbox} onChange={this.handleChange} data-inputtype="rememberme" />
             <p>Remember Me</p>
           </div> : null}
-          <button type="submit" className={styles.submitButton}>{submitButtonText}<i className={styles.zmdiLongArrowRight} aria-hidden="true" /></button>
+          <button type="submit" className={styles.submitButton}>{submitButtonText}<i className={classNames({[styles.zmdiLongArrowRight]: !processingRequest, [styles.zmdiSpinner]: processingRequest })} aria-hidden="true" /></button>
         </form>
       </div>
     );

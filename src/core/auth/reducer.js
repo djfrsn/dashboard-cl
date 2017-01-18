@@ -4,6 +4,7 @@ import { authActions } from './actions';
 
 export const AuthState = new Record({
   authFlow: 'initial',
+  processingRequest: false,
   remembermeCredentials: null,
   authError: null,
   authenticated: false,
@@ -16,6 +17,11 @@ export function authReducer(state = new AuthState(), {payload, type}) {
     case authActions.AUTH_FLOW:
       return state.merge({
         authFlow: payload.type
+      });
+
+    case authActions.PROCESSING_API_REQUEST:
+      return state.merge({
+        processingRequest: payload.processingRequest
       });
 
     case authActions.SIGN_IN_FULFILLED:

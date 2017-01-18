@@ -141,6 +141,24 @@
   margin: 0;
 }
 
+.right-button-icon {
+  position: absolute;
+  top: 11px;
+  right: 30px;
+  left: initial;
+  font-size: 2em;
+}
+
+.zmdiSpinner {
+  @extend .zmdi;
+  @extend .zmdi-spinner;
+  @extend .zmdi-hc-spin;
+  @extend .inputIcons;
+  @extend .right-button-icon;
+  right: 23px;
+  color: themeColor(fracture);
+}
+
 .zmdiEmail {
   @extend .zmdi;
   @extend .zmdi-email;
@@ -168,8 +186,5 @@
 .zmdiLongArrowRight {
   @extend .zmdi;
   @extend .zmdi-long-arrow-right;
-  position: absolute;
-  right: 30px;
-  font-size: 2em;
-  top: 11px;
+  @extend .right-button-icon;
 }

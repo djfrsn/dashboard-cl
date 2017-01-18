@@ -40,13 +40,16 @@ function* authFlow(flow) {
 }
 
 function* createUser(credentials) {
+  yield put(authActions.processingAPIRequest(true));
   try {
     const validInputs = yield call(validateSignInInputs, credentials);
 
     if (validInputs) {
+      yield put(authActions.processingAPIRequest(true));
       const authData = yield call([firebaseAuth, firebaseAuth.createUserWithEmailAndPassword], credentials.email, credentials.password);
       authConnection.path = `users/${authData.uid}`;
       yield authData.updateProfile({ displayName: credentials.firstname });
+      yield put(authActions.processingAPIRequest(false));
       yield fork(updateUserData, { firstName: credentials.firstname, uid: authData.uid, email: credentials.email });
       yield put(authActions.signInFulfilled(authData));
       yield history.push('/');
@@ -58,9 +61,11 @@ function* createUser(credentials) {
   catch (error) {
     yield put(notificationsActions.handleMessage(error));
   }
+  yield put(authActions.processingAPIRequest(false));
 }
 
 function* sendPasswordResetEmail(credentials) {
+  yield put(authActions.processingAPIRequest(true));
   try {
     yield call([firebaseAuth, firebaseAuth.sendPasswordResetEmail], credentials.email);
     yield put(notificationsActions.handleMessage({ message: 'A password reset email has been sent successfully!', code: 'success'}));
@@ -69,9 +74,11 @@ function* sendPasswordResetEmail(credentials) {
   catch (error) {
     yield put(notificationsActions.handleMessage(error));
   }
+  yield put(authActions.processingAPIRequest(false));
 }
 
 function* signIn(credentials) {
+  yield put(authActions.processingAPIRequest(true));
   try {
     const authData = yield call([firebaseAuth, firebaseAuth.signInWithEmailAndPassword], credentials.email, credentials.password);
     const localCredentials = yield call(rememberMe, credentials);
@@ -82,9 +89,11 @@ function* signIn(credentials) {
   catch (error) {
     yield put(notificationsActions.handleMessage(error));
   }
+  yield put(authActions.processingAPIRequest(false));
 }
 
 function* signOut() {
+  yield put(authActions.processingAPIRequest(true));
   try {
     yield call([firebaseAuth, firebaseAuth.signOut]);
     yield put(authActions.signOutFulfilled());
@@ -93,6 +102,7 @@ function* signOut() {
   catch (error) {
     yield put(authActions.signOutFailed(error));
   }
+  yield put(authActions.processingAPIRequest(false));
 }
 
 //=====================================

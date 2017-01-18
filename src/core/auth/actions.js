@@ -1,6 +1,5 @@
 import firebase from 'firebase';
 
-
 export const authActions = {
   AUTH_FLOW: 'AUTH_FLOW',
   CREATE_USER: 'CREATE_USER',
@@ -8,6 +7,7 @@ export const authActions = {
   SIGN_IN: 'SIGN_IN',
   SIGN_IN_FAILED: 'SIGN_IN_FAILED',
   POST_MESSAGE: 'POST_MESSAGE',
+  PROCESSING_API_REQUEST: 'PROCESSING_API_REQUEST',
   SET_CREDENTIALS_FROM_LOCAL_STORAGE: 'SET_CREDENTIALS_FROM_LOCAL_STORAGE',
   SIGN_IN_FULFILLED: 'SIGN_IN_FULFILLED',
 
@@ -15,10 +15,14 @@ export const authActions = {
   SIGN_OUT_FAILED: 'SIGN_OUT_FAILED',
   SIGN_OUT_FULFILLED: 'SIGN_OUT_FULFILLED',
 
-
   authFlow: type => ({
     type: authActions.AUTH_FLOW,
     payload: {type}
+  }),
+
+  processingAPIRequest: processingRequest => ({
+    type: authActions.PROCESSING_API_REQUEST,
+    payload: {processingRequest}
   }),
 
   createUser: credentials => ({
