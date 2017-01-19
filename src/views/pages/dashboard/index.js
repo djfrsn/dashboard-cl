@@ -2,21 +2,19 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { authActions } from 'core/auth';
-import LogoutButton from 'views/components/logout-button';
 
 
-const TasksPage = ({signOut}) => {
+const Dashboard = ({children, signOut}) => {
   return (
     <div>
-      <LogoutButton signOut={signOut} />
+      {"dashboard contents"}
     </div>
   );
 };
 
-TasksPage.propTypes = {
+Dashboard.propTypes = {
   signOut: PropTypes.func.isRequired
 };
-
 
 //=====================================
 //  CONNECT
@@ -33,4 +31,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(TasksPage);
+)(Dashboard);
