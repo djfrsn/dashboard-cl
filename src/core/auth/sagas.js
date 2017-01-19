@@ -1,5 +1,6 @@
 /* eslint-disable no-constant-condition */
 import { browserHistory as history } from 'react-router';
+// import { eventChannel } from 'redux-saga';
 import { call, fork, put, take } from 'redux-saga/effects';
 import { firebaseAuth } from 'core/firebase';
 import { authActions } from './actions';
@@ -7,17 +8,17 @@ import { validateSignInInputs, rememberMe } from './auth';
 import { notificationsActions } from '../notifications/actions';
 import { authConnection } from './auth-connection';
 
-function subscribe() {
-  return eventChannel(emit => authConnection.subscribe(emit));
-}
+// function subscribe() {
+//   return eventChannel(emit => authConnection.subscribe(emit));
+// }
 
-function* read() {
-  const channel = yield call(subscribe);
-  while (true) {
-    let action = yield take(channel);
-    yield put(action);
-  }
-}
+// function* read() {
+//   const channel = yield call(subscribe);
+//   while (true) {
+//     let action = yield take(channel);
+//     yield put(action);
+//   }
+// }
 
 function* write(context, method, onError, ...params) {
   try {
@@ -48,7 +49,8 @@ function* createUser(credentials) {
       yield fork(updateUserData, { firstName: credentials.firstname, uid: authData.uid, email: credentials.email });
       yield put(authActions.signInFulfilled(authData));
       yield history.push('/');
-    } else {
+    }
+    else {
       yield put(notificationsActions.handleMessage({ message: 'Passwords don\'t match.', code: 'error'}));
     }
 

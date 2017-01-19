@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { authActions } from 'core/auth';
-import { notificationsActions } from 'core/notifications';
 import SignInForm from 'views/components/sign-in-form';
 import SignInFooter from 'views/components/sign-in-footer';
 import styles from './sign_in.scss';
@@ -9,7 +8,7 @@ import styles from './sign_in.scss';
 const SignInPage = ({ auth, authFlow, createUserWithEmailAndPassword, routing, sendPasswordResetEmail, signInWithEmailAndPassword }) => {
   return (
     <div className={styles.signIn}>
-      <SignInForm auth={auth} routing={routing} authFlow={authFlow} createUserWithEmailAndPassword={createUserWithEmailAndPassword} signInWithEmailAndPassword={signInWithEmailAndPassword} sendPasswordResetEmail={sendPasswordResetEmail}/>
+      <SignInForm auth={auth} routing={routing} authFlow={authFlow} createUserWithEmailAndPassword={createUserWithEmailAndPassword} signInWithEmailAndPassword={signInWithEmailAndPassword} sendPasswordResetEmail={sendPasswordResetEmail} />
       <SignInFooter auth={auth} routing={routing} authFlow={authFlow} />
     </div>
   );

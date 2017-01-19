@@ -15,7 +15,7 @@ const getMessageLevel = data => {
     return level === true;
   }))[0];
 
-  switch(messageLevel) {
+  switch (messageLevel) {
     case 'isSuccess':
       level = 'success';
       break;
@@ -33,7 +33,7 @@ const getMessageLevel = data => {
   }
 
   return level;
-}
+};
 
 export const notificationsActions = {
   POST_MESSAGE: 'POST_MESSAGE',
@@ -44,7 +44,7 @@ export const notificationsActions = {
     payload: {notification}
   }),
 
-  clearMessage: notification => ({
+  clearMessage: () => ({
     type: notificationsActions.CLEAR_MESSAGE,
     payload: {notification: {message: '', level: ''}}
   }),

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import NotificationSystem from 'react-notification-system'
-import styles from './notification.scss';
+import NotificationSystem from 'react-notification-system';
+// import styles from './notification.scss';
 
 // https://github.com/igorprado/react-notification-system
 
@@ -17,10 +17,6 @@ export class Notification extends Component {
     this.addNotification = ::this.addNotification;
   }
 
-  componentDidMount() {
-    this.notificationSystem = this.refs.notificationSystem;
-  }
-
   componentWillUpdate(nextProps) {
     this.addNotification(nextProps.notifications.notification);
   }
@@ -29,7 +25,7 @@ export class Notification extends Component {
     const { message, level } = notification;
     const okMessage = (message !== '' && typeof message === 'string') && (level !== '' && typeof level === 'string');
     if (okMessage) {
-      console.log('notification:', message);
+      console.log('notification:', message); // eslint-disable-line no-console
       this.notificationSystem.addNotification({ message, level });
     }
   }
@@ -37,7 +33,7 @@ export class Notification extends Component {
   render() {
     return (
       <div>
-        <NotificationSystem ref="notificationSystem" />
+        <NotificationSystem ref={ref => this.notificationSystem = ref} />
       </div>
     );
   }

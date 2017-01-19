@@ -1,4 +1,4 @@
-import { List } from 'immutable';
+// import { List } from 'immutable';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { authActions } from 'core/auth';

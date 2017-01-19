@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { authActions, getAuth } from 'core/auth';
+import { authActions } from 'core/auth';
 import Notification from 'views/components/notification';
 import styles from './app.scss';
 
@@ -15,6 +15,7 @@ function App({ children, notifications }) {
 
 App.propTypes = {
   children: PropTypes.element,
+  notifications: PropTypes.object.isRequired,
   signOut: PropTypes.func.isRequired
 };
 

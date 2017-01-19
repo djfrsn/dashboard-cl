@@ -34,10 +34,9 @@ export class SignInForm extends Component {
   }
 
   componentDidMount() {
-    this.form = this.refs.form;
     this._onShow();
     const authFlow = this.getAuthFlow();
-    const authFlowOk = authFlow !== "" && typeof authFlow === 'string';
+    const authFlowOk = authFlow !== '' && typeof authFlow === 'string';
     if (authFlowOk) {
       this.props.authFlow(authFlow);
     }
@@ -156,7 +155,7 @@ export class SignInForm extends Component {
     return (
       <div className={styles.centerContent}>
         <div className={styles.logo} style={this.state.logoPosition} ><h1>Dashboard-cl</h1></div>
-        <form className={styles.form} onSubmit={this.handleSubmit} ref="form" >
+        <form className={styles.form} onSubmit={this.handleSubmit} ref={ref => this.form = ref} >
           {!isAltAuthFlow ? <button className={styles.createAccountButton} onClick={this.showSignUp} data-text="Create Account">+</button> : null}
           <div className={classNames({[styles.inputContainer]: true, [styles.isForgotPassword]: isForgotPassword })}>
             <Icon className="email" />
@@ -185,7 +184,7 @@ export class SignInForm extends Component {
           </div> : null}
           <button type="submit" className={styles.submitButton}>{submitButtonText}
             <Icon className={processingRequest ? 'spinner' : 'longArrowRight'} />
-            </button>
+          </button>
         </form>
       </div>
     );

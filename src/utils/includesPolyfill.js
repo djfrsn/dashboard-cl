@@ -7,7 +7,8 @@ if (!String.prototype.includes) {
 
     if (start + search.length > this.length) {
       return false;
-    } else {
+    }
+    else {
       return this.indexOf(search, start) !== -1;
     }
   };
