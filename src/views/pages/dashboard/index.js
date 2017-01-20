@@ -2,11 +2,11 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { authActions } from 'core/auth';
-
+import styles from './dashboard.scss';
 
 const Dashboard = ({children, signOut}) => {
   return (
-    <div>
+    <div className={styles.dashboardContainer}>
       {"dashboard contents"}
     </div>
   );

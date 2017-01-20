@@ -9,13 +9,13 @@ import styles from './app.scss';
 function App({ auth, children, notifications, signOut }) {
   const authenticated = auth.authenticated;
   return (
-    <div className={styles.mainContainer}>
+    <div className={styles.appContainer}>
       <Notification notifications={notifications} />
-      {authenticated ? <header>
+      {authenticated ? <header className={styles.headerContainer}>
         <LogoutButton signOut={signOut} />
       </header> : null}
-      <main>{children}</main>
-      {authenticated ? <footer>
+      <main className={styles.mainContainer}>{children}</main>
+      {authenticated ? <footer className={styles.footerContainer}>
         {'hello'}
       </footer> : null}
     </div>

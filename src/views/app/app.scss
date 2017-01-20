@@ -1,13 +1,30 @@
+@import '../styles/surface/grid';
 @import '../styles/utilities/color_scheme';
 @import '../styles/utilities/positioning.scss';
 
-.mainContainer {
-  @extend .flex-wrap;
+.appContainer {
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   background-color: darken(themeColor(light), 2%);
   > main {
     width: 100%;
   }
+}
+
+.headerContainer {
+  @extend .container;
+  flex: 0 0 auto;
+  margin: 0;
+}
+
+.mainContainer {
+  flex: 1 1 auto;
+  position: relative;
+  overflow-y: auto;/* need this to position inner content */
+}
+
+.footerContainer {
+  flex: 0 0 auto;
 }

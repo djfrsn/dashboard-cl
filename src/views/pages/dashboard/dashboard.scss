@@ -1,0 +1,6 @@
+.dashboardContainer {
+  flex: 1 1 auto;
+  position: relative;
+  height: 100%;
+  overflow-y: auto;/* need this to position inner content */
+}

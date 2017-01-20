@@ -29,7 +29,7 @@
 	}
 	.m--#{$i} {
 		margin-left: 100%/$grid-columns*$i;
-		
+
 	}
 	@media screen and (max-width: $media-med) {
 		.m-m--#{$i} {
@@ -39,7 +39,7 @@
 	@media screen and (max-width: $media-small) {
 		.m-s--#{$i} {
 			margin-left: 100%/$grid-columns*$i;
-			
+
 		}
 	}
 	@media screen and (max-width: $media-tiny) {
@@ -67,7 +67,7 @@
 	}
 }
 
-[class*="container"] {
+[class*="container"], .container {
 	display: flex;
 }
 
@@ -135,21 +135,21 @@
 
 .no-nudge--m {
 	@media screen and (max-width: $media-med) {
-		margin-left: 0;
 		margin-right: 0;
+		margin-left: 0;
 	}
 }
 
 .no-nudge--s {
 	@media screen and (max-width: $media-small) {
-		margin-left: 0;
 		margin-right: 0;
+		margin-left: 0;
 	}
 }
 
 .no-nudge--t {
 	@media screen and (max-width: $media-tiny) {
-		margin-left: 0;
 		margin-right: 0;
+		margin-left: 0;
 	}
 }
