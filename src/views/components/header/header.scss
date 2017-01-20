@@ -1,0 +1,65 @@
+@import '../../styles/surface/buttons';
+@import '../../styles/utilities/color_scheme';
+@import '../../styles/utilities/media_queries';
+@import '../../styles/utilities/positioning';
+@import '../../styles/utilities/text';
+
+.headerContainer {
+  @extend .text-shadow-dark;
+  flex: 0 0 auto;
+  display: flex;
+  margin: 0;
+  padding: 10px;
+  color: themeColor(light);
+  @include tablet-portrait-and-up {
+    padding: 15px 40px;
+  }
+  @include tablet-landscape-and-up {
+    padding: 15px 60px;
+  }
+  @include desktop-and-up {
+    padding: 15px 125px;
+  }
+}
+
+.logoContainer {
+  display: flex;
+  margin: 0;
+}
+
+.logo {
+  @extend .flex-center;
+  margin: 0;
+  font-size: 1.5em;
+  @include tablet-portrait-and-up {
+    font-size: 2.3em;
+  }
+}
+
+.headerDetails {
+  display: flex;
+  flex-flow: column wrap;
+  margin-left: auto;
+  color: inherit;
+}
+
+.userName {
+  margin-bottom: 5px;
+  color: inherit;
+}
+
+.utilityLinks {
+  margin: 0;
+  > li {
+    float: left;
+    cursor: pointer;
+    &:first-of-type {
+      margin-right: 10px;
+    }
+  }
+}
+
+.logoutButton {
+  @extend .btn--raised;
+  @extend .secondary-background-gradient;
+}

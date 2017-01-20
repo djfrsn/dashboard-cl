@@ -3,9 +3,7 @@
 @import '../../styles/utilities/positioning';
 
 .signIn {
-  @extend .flex-center;
-  @extend .flex-wrap;
-  @extend .text-shadow-light;
-  position: relative;
+  display: flex;
   height: 100%;
+  @extend .text-shadow-light;
 }

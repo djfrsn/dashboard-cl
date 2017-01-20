@@ -3,9 +3,8 @@ import classNames from 'classnames';
 
 
 const Button = ({children, className, onClick, type = 'button'}) => {
-  const cssClasses = classNames('btn', className);
   return (
-    <button className={cssClasses} onClick={onClick} type={type}>
+    <button className={className} onClick={onClick} type={type}>
       {children}
     </button>
   );

@@ -1,0 +1,16 @@
+@import '../../styles/utilities/color_scheme';
+@import '../../styles/utilities/media_queries';
+
+.footerContainer {
+  flex: 0 0 auto;
+  padding: 10px;
+  @include tablet-portrait-and-up {
+    padding: 15px 40px;
+  }
+  @include tablet-landscape-and-up {
+    padding: 15px 60px;
+  }
+  @include desktop-and-up {
+    padding: 15px 125px;
+  }
+}

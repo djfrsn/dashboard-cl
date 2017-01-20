@@ -1,27 +1,28 @@
 import React, { PropTypes } from 'react';
 import Button from '../button';
-// import GitHubLogo from '../logos/github';
+import styles from './header.scss';
 
 
-const Header = ({authenticated, signOut}) => {
+const Header = ({auth, signOut}) => {
   return (
-    <header className="header">
-      <div className="g-row">
-        <div className="g-col">
-          <h1 className="header__title">Dashboard-cl</h1>
-
-          <ul className="header__actions">
-            {authenticated ? <li><Button onClick={signOut}>Sign out</Button></li> : null}
-          </ul>
-        </div>
-      </div>
+    <header className={styles.headerContainer}>
+    <div className={styles.logoContainer}><h1 className={styles.logo}>Dashboard-cl</h1></div>
+    <div className={styles.headerDetails}>
+      <p className={styles.userName}>{auth.user.displayName}</p>
+      <ul className={styles.utilityLinks}>
+        <li><a>Profile</a></li>
+        <li><a onClick={signOut}>Sign Out</a></li>
+      </ul>
+    </div>
     </header>
   );
 };
 
+
 Header.propTypes = {
-  authenticated: PropTypes.bool.isRequired,
+  auth: PropTypes.object.isRequired,
   signOut: PropTypes.func.isRequired
 };
+
 
 export default Header;

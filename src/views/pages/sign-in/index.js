@@ -9,7 +9,6 @@ const SignInPage = ({ auth, authFlow, createUserWithEmailAndPassword, routing, s
   return (
     <div className={styles.signIn}>
       <SignInForm auth={auth} routing={routing} authFlow={authFlow} createUserWithEmailAndPassword={createUserWithEmailAndPassword} signInWithEmailAndPassword={signInWithEmailAndPassword} sendPasswordResetEmail={sendPasswordResetEmail} />
-      <SignInFooter auth={auth} routing={routing} authFlow={authFlow} />
     </div>
   );
 };

@@ -29,7 +29,7 @@ export function authReducer(state = new AuthState(), {payload, type}) {
         authenticated: true,
         authError: null,
         uid: payload.uid,
-        user: payload
+        user: payload.authUser
       });
 
     case authActions.SIGN_OUT_FULFILLED:
