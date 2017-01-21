@@ -2,20 +2,17 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { authActions } from 'core/auth';
-import DashboardNav from 'views/components/dashboard-nav';
-import DashboardCards from 'views/components/dashboard-cards';
-import styles from './dashboard.scss';
+import styles from './default.scss';
 
-const Dashboard = () => {
+const Default = () => {
   return (
-    <div className={styles.dashboardContainer}>
-      <DashboardNav />
-      <DashboardCards />
+    <div className={styles.defaultContainer}>
+      {"default contents"}
     </div>
   );
 };
 
-Dashboard.propTypes = {
+Default.propTypes = {
   signOut: PropTypes.func.isRequired
 };
 
@@ -34,4 +31,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Dashboard);
+)(Default);

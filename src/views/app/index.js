@@ -9,11 +9,12 @@ import styles from './app.scss';
 
 function App({ auth, authFlow, children, notifications, routing, signOut }) {
   const authenticated = auth.authenticated;
+  const dashboard = routing.locationBeforeTransitions.pathname === '/';
   return (
     <div className={styles.appContainer}>
       <Notification notifications={notifications} />
       {authenticated ? <Header auth={auth} signOut={signOut} /> : null}
-      <main className={classNames({[styles.mainContainer]: true, authenticated })}>{children}</main>
+      <main className={classNames({[styles.mainContainer]: true, [styles.authenticated]: authenticated, [styles.dashboard]: dashboard })}>{children}</main>
       <Footer auth={auth} authFlow={authFlow} routing={routing} />
     </div>
   );

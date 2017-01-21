@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 import Button from '../button';
 import styles from './header.scss';
 
@@ -10,7 +11,7 @@ const Header = ({auth, signOut}) => {
     <div className={styles.headerDetails}>
       <p className={styles.userName}>{auth.user.displayName}</p>
       <ul className={styles.utilityLinks}>
-        <li><a>Profile</a></li>
+        <li><Link to="/profile">Profile</Link></li>
         <li><a onClick={signOut}>Sign Out</a></li>
       </ul>
     </div>

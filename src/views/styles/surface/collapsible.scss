@@ -1,13 +1,16 @@
 @import './_imports/_variables';
 
-[id*="collapsible-"] {
+[id*="collapsible-"], .collapsible-wrap {
 	display: none;
 	&:checked {
 		~ [class*="collapsible-"][class$="area"] { // Collapsible content
-			transform: scaleY(1);
 			height: auto;
+			margin-bottom: $space-small;
 			padding: $space-small*1.5 $space-med;
-			margin-bottom: $space-med;
+			transform: scaleY(1);
+			a {
+		    padding: 5px;
+		  }
 		}
 		+ label {
 			&:before {
@@ -23,14 +26,14 @@
 }
 
 label[for*="collapsible-"] { // Label
-	width: 100%;
-	cursor: pointer;
 	display: flex;
 	position: relative;
-	padding: $space-small*1.5 24px;
-	border-bottom: solid 1px lighten($grey, 30%);
-	color: lighten($black, 15%);
+	width: 100%;
 	border-radius: 3px;
+	border-bottom: solid 1px lighten($grey, 30%);
+	padding: $space-small*1.5 24px;
+	color: lighten($black, 15%);
+	cursor: pointer;
 	&:before, &:after {
 		content: '';
 		position: absolute;
@@ -47,15 +50,15 @@ label[for*="collapsible-"] { // Label
 	&:after {
 		margin-top: 6px;
 		transform: rotate(-50deg);
-		
+
 	}
 }
 
-[class*="collapsible-"][class$="area"] { // Collapsible content
+[class*="collapsible-"][class$="area"]{ // Collapsible content
+	height: 0;
+	padding-left: $space-med;
 	transform: scaleY(0);
 	transform-origin: 0 0;
-	height: 0;
 	will-change: height, transform;
 	transition: all 0.3s ease;
-	padding-left: $space-med;
 }

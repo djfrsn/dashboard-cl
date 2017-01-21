@@ -4,6 +4,8 @@
 .footerContainer {
   flex: 0 0 auto;
   padding: 10px;
+  background: themeColor(primary);
+  color: themeColor(light);
   @include tablet-portrait-and-up {
     padding: 15px 40px;
   }

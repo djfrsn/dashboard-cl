@@ -1,0 +1,21 @@
+@import '../../styles/surface/cards_tiles';
+@import '../../styles/surface/nav';
+@import '../../styles/surface/tooltip';
+@import '../../styles/surface/buttons';
+@import '../../styles/surface/grid';
+@import '../../styles/surface/utility';
+@import '../../styles/utilities/media_queries';
+@import '../../styles/utilities/color_scheme';
+@import '../../styles/utilities/text';
+@import '../../styles/utilities/positioning';
+@import '../../styles/utilities/animations';
+
+.cardsContainer {
+  display: flex;
+}
+
+.cardContainer {
+  @extend .card;
+  display: flex;
+  width: 100%;
+}

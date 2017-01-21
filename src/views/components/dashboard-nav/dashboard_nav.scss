@@ -1,0 +1,32 @@
+@import '../../styles/surface/collapsible';
+@import '../../styles/surface/cards_tiles';
+@import '../../styles/surface/nav';
+@import '../../styles/surface/tooltip';
+@import '../../styles/surface/buttons';
+@import '../../styles/surface/grid';
+@import '../../styles/surface/utility';
+@import '../../styles/utilities/media_queries';
+@import '../../styles/utilities/color_scheme';
+@import '../../styles/utilities/text';
+@import '../../styles/utilities/positioning';
+@import '../../styles/utilities/animations';
+
+.navContainer {
+  @extend .flex-center;
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 0;
+}
+
+.mobileMenu {
+  @extend .card;
+  @extend .no-pad;
+}
+
+.menuArea {
+
+}
+
+.menuLabel {
+}

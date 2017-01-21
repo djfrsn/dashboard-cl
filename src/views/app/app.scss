@@ -13,7 +13,7 @@
   flex: 1 1 auto;
   padding: 10px;
   overflow-y: auto;/* need this to position inner content */
-  .authenticated {
+  &.authenticated {
     position: relative;
   }
   @include tablet-portrait-and-up {

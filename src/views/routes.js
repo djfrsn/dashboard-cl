@@ -2,12 +2,14 @@ import { isAuthenticated } from 'core/auth';
 import App from './app';
 import SignInPage from './pages/sign-in';
 import Dashboard from './pages/dashboard';
+import ProfilePage from './pages/profile';
 
 
 export const paths = {
   ROOT: '/',
+  SCREEN_LOCK: '/lock',
   SIGN_IN: '/sign-in',
-  SCREEN_LOCK: '/lock'
+  PROFILE: '/profile'
 };
 
 
@@ -47,6 +49,11 @@ export const getRoutes = getState => {
       {
         path: paths.SIGN_IN,
         component: SignInPage,
+        onEnter: requireUnauth(getState)
+      },
+      {
+        path: paths.PROFILE,
+        component: ProfilePage,
         onEnter: requireUnauth(getState)
       }
     ]
