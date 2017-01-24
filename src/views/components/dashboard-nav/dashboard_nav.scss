@@ -19,8 +19,9 @@
 }
 
 .nav {
-  @extend .nav--super-vertical;
-  @extend .g--2;
+  > div {
+    position: relative;
+  }
 }
 
 .aside {
@@ -29,10 +30,13 @@
   align-self: flex-start;
   display: none;
   width: 20%;
-  max-height: 70%;
+  height: auto;
   background: lighten(themeColor(light), 1%);
   @include desktop-and-up {
     display: block;
+  }
+  a {
+    padding: 20px 24px 20px 36px;
   }
 }
 

@@ -2,6 +2,7 @@
 @import '../../styles/utilities/color_scheme';
 @import '../../styles/utilities/positioning';
 @import '../../styles/utilities/media_queries';
+@import '../../styles/utilities/text';
 
 .inputIcons {
   @extend .align-start;
@@ -21,6 +22,15 @@
   right: 30px;
   left: initial;
   font-size: 2em;
+}
+
+.left-button-icon {
+  position: absolute;
+  top: 18px;
+  left: 12px;
+  color: lighten(themeColor(dark), 27%);
+  font-size: 1.4em;
+  @extend .text-shadow-dark;
 }
 
 .spinner {
@@ -60,6 +70,12 @@
   @extend .inputIcons;
 }
 
+.navEmail {
+  @extend .zmdi;
+  @extend .zmdi-email;
+  @extend .left-button-icon;
+}
+
 .account {
   @extend .zmdi;
   @extend .zmdi-account;
@@ -82,4 +98,40 @@
   @extend .zmdi;
   @extend .zmdi-long-arrow-right;
   @extend .right-button-icon;
+}
+
+.shopping-cart {
+  @extend .zmdi;
+  @extend .zmdi-shopping-cart;
+  @extend .left-button-icon;
+}
+
+.library {
+  @extend .zmdi;
+  @extend .zmdi-library;
+  @extend .left-button-icon;
+}
+
+.layers {
+  @extend .zmdi;
+  @extend .zmdi-layers;
+  @extend .left-button-icon;
+}
+
+.file-text {
+  @extend .zmdi;
+  @extend .zmdi-file-text;
+  @extend .left-button-icon;
+}
+
+.flag {
+  @extend .zmdi;
+  @extend .zmdi-flag;
+  @extend .left-button-icon;
+}
+
+.store {
+  @extend .zmdi;
+  @extend .zmdi-store;
+  @extend .left-button-icon;
 }

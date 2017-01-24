@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import Icon from '../icon';
+import Icon from 'views/components/icon';
 import styles from './sign_in_form.scss';
 
 const initialFormState = { email: '', firstname: '', password: '', confirmationpassword: '', rememberme: false };
