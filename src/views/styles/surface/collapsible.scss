@@ -1,15 +1,17 @@
 @import './_imports/_variables';
+@import '../utilities/positioning';
 
 [id*="collapsible-"], .collapsible-wrap {
 	display: none;
 	&:checked {
+  	@extend .flex-wrap-rows;
 		~ [class*="collapsible-"][class$="area"] { // Collapsible content
 			height: auto;
 			margin-bottom: $space-small;
 			padding: $space-small*1.5 $space-med;
 			transform: scaleY(1);
 			a {
-		    padding: 5px;
+		    margin: 5px;
 		  }
 		}
 		+ label {

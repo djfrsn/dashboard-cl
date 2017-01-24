@@ -1,0 +1,36 @@
+@import '../../styles/surface/collapsible';
+@import '../../styles/surface/cards_tiles';
+@import '../../styles/surface/nav';
+@import '../../styles/surface/utility';
+@import '../../styles/utilities/media_queries';
+@import '../../styles/utilities/color_scheme';
+@import '../../styles/utilities/positioning';
+
+.navContainer {
+  @extend .flex-center;
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 0;
+}
+
+.mobileMenu {
+  @extend .card;
+  @extend .no-pad;
+  width: 100%;
+  max-width: 400px;
+  margin: 10px auto;
+  @include desktop-and-up {
+    display: none;
+  }
+}
+
+.menuCheckbox {
+  display: none !important;
+}
+
+.menuArea {
+}
+
+.menuLabel {
+}

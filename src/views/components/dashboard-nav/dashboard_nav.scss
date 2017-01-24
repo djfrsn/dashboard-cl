@@ -1,32 +1,41 @@
 @import '../../styles/surface/collapsible';
 @import '../../styles/surface/cards_tiles';
 @import '../../styles/surface/nav';
-@import '../../styles/surface/tooltip';
-@import '../../styles/surface/buttons';
 @import '../../styles/surface/grid';
 @import '../../styles/surface/utility';
 @import '../../styles/utilities/media_queries';
 @import '../../styles/utilities/color_scheme';
 @import '../../styles/utilities/text';
 @import '../../styles/utilities/positioning';
-@import '../../styles/utilities/animations';
 
 .navContainer {
-  @extend .flex-center;
   display: flex;
   width: 100%;
-  margin-bottom: 20px;
   padding: 0;
 }
 
-.mobileMenu {
-  @extend .card;
-  @extend .no-pad;
+.navResponsive {
+  @extend .nav--super-vertical-responsive;
 }
 
-.menuArea {
-
+.nav {
+  @extend .nav--super-vertical;
+  @extend .g--2;
 }
 
-.menuLabel {
+.aside {
+  @extend .nav--super-vertical;
+  @extend .no-margin-vertical;
+  align-self: flex-start;
+  display: none;
+  width: 20%;
+  max-height: 70%;
+  background: lighten(themeColor(light), 1%);
+  @include desktop-and-up {
+    display: block;
+  }
+}
+
+.navCollapsibleLinks {
+  @extend .nav-collapsible-links;
 }

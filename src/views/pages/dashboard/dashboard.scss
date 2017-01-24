@@ -1,7 +1,7 @@
 @import '../../styles/utilities/positioning';
 
 .dashboardContainer {
-  // @extend .flex-center;
+  @extend .flex-columns;
   flex: 1 1 auto;
   position: relative;
   height: 100%;

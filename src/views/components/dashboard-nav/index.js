@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 import styles from './dashboard_nav.scss';
-
+import MobileNav from 'views/components/mobile-nav';
 
 export class DashboardNav extends Component {
   // static propTypes = {
@@ -26,16 +26,14 @@ export class DashboardNav extends Component {
   render() {
     return (
       <div className={styles.navContainer}>
-        <div className={classNames('collapsible-wrap', styles.mobileMenu)}>
-          <input type="checkbox" id="collapsible-1" />
-          <label className={styles.menuLabel} htmlFor="collapsible-1">Menu</label>
-          <div className={classNames('collapsible-1-area', styles.menuArea)}>
-            <a id="home" className="menu-item" href="/">Dasboard</a>
-            <a id="about" className="menu-item" href="/about">Orders</a>
-            <a id="contact" className="menu-item" href="/contact">Support</a>
-            <a className="menu-item--small" href="">Services</a>
-          </div>
-        </div>
+        <MobileNav />
+        <aside className={classNames([styles.aside]: true, 'g--2 g-med--3 g-small--6 g-tiny--12': true )}>
+          <nav className={classNames('g--12 ': true )}>
+            <a href="">About</a>
+            <a href="">Contact</a>
+            <a href="">blah</a>
+          </nav>
+        </aside>
       </div>
     );
   }

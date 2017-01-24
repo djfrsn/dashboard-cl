@@ -10,6 +10,15 @@
   align-content: flex-end;
 }
 
+.flex-wrap-rows {
+  display: -webkit-flex;
+   display: flex;
+   flex-flow: row wrap;
+   justify-content: center;
+   align-items: center;
+   align-content: flex-end;
+}
+
 .flex-rows {
    display: flex;
    flex-direction: row;

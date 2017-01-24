@@ -11,11 +11,14 @@
 @import '../../styles/utilities/animations';
 
 .cardsContainer {
+  align-self: flex-end;
   display: flex;
+  width: 72.5%;
 }
 
 .cardContainer {
   @extend .card;
   display: flex;
   width: 100%;
+  background: lighten(themeColor(light), 1%);
 }
